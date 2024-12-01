@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLSpaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CHITIETDATHANG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDDonHang" Type="int" />
+    <Property Name="MAKH" Type="int" />
+    <Property Name="MASP" Type="int" Nullable="false" />
+    <Property Name="SOLUONG" Type="int" />
+    <Property Name="DONGIA" Type="money" />
+  </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HO_TEN" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="NGAY_TU_VAN" Type="date" Nullable="false" />
+    <Property Name="GIO" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DICHVU">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TEN_DICH_VU" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LOAI_DICH_VU" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MOTA_DICH_VU" Type="nvarchar" MaxLength="255" />
+    <Property Name="GIA_DICH_VU" Type="money" Nullable="false" />
+    <Property Name="HINH_ANH" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="DonDatHang">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DaThanhToan" Type="bit" />
+    <Property Name="TinhTrangGiaoHang" Type="int" />
+    <Property Name="NgayDat" Type="smalldatetime" />
+    <Property Name="NgayGiao" Type="smalldatetime" />
+    <Property Name="MAKH" Type="int" />
+  </EntityType>
+  <EntityType Name="ROLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CHUCVU" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENSP" Type="nvarchar" MaxLength="75" Nullable="false" />
+    <Property Name="LOAISP" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="MOTA_SP" Type="nvarchar" MaxLength="255" />
+    <Property Name="GIA" Type="money" Nullable="false" />
+    <Property Name="NAM_SAN_XUAT" Type="date" Nullable="false" />
+    <Property Name="NAM_HET_HAN" Type="date" Nullable="false" />
+    <Property Name="HINH_ANH" Type="nchar" MaxLength="100" />
+    <Property Name="SO_LUONG" Type="int" Nullable="false" />
+    <Property Name="STATUS" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="USER_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="PASSWORD" Type="varchar(max)" />
+    <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="12" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgaySinh" Type="smalldatetime" />
+    <Property Name="ChucVu" Type="varchar" MaxLength="10" />
+    <Property Name="Code" Type="int" />
+    <Property Name="STATUS" Type="int" />
+  </EntityType>
+  <EntityContainer Name="QLSpaModelStoreContainer">
+    <EntitySet Name="CHITIETDATHANG" EntityType="Self.CHITIETDATHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DICHVU" EntityType="Self.DICHVU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonDatHang" EntityType="Self.DonDatHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROLE" EntityType="Self.ROLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

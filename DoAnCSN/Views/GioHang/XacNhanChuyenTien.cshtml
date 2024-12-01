@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Thanh Toán</title>
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body Styles */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f2f2f2; /* Optional: add background color for better visibility */
+        }
+
+        /* QR Section */
+        .qr-section {
+            position: relative; /* Allow absolute positioning for close button */
+            text-align: center;
+            padding: 15px;
+            background-color: white; /* Optional: add background for the QR section */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: add shadow for depth */
+        }
+
+            .qr-section h2 {
+                font-size: 20px;
+                color: #333;
+                margin-bottom: 15px;
+            }
+
+            .qr-section p {
+                color: #777;
+                font-size: 14px;
+                margin-top: 12px;
+            }
+
+        /* QR Code Styling */
+        .qr-code {
+            width: 300px;
+            height: auto;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        /* Strong Text */
+        strong {
+            color: #333;
+            font-size: 18px;
+        }
+
+        /* Button Styling */
+        .qr-section button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+            .qr-section button:hover {
+                background-color: #45a049;
+            }
+
+        /* Close Button Styling */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+            .close-button:hover {
+                color: #f00; /* Change color on hover */
+            }
+    </style>
+</head>
+<body>
+    <div class="qr-section">
+        <button class="close-button" onclick="closeSection()">X</button>
+        <h2>Quét Mã QR Để Thanh Toán</h2>
+        <img src="https://qr.ecaptcha.vn/api/generate/Mb/0396605617/PHAM%20XUAN%20DUC?amount=2.222&memo=E7093D562320427A&is_mask=0&bg=7" alt="Mã QR" class="qr-code">
+        <p>Vui lòng quét mã QR để thanh toán qua ứng dụng ngân hàng.</p>
+        <button>Xác nhận thanh toán</button>
+    </div>
+
+    <script>
+        function closeSection() {
+            document.querySelector('.qr-section').style.display = 'none'; // Hides the QR section
+        }
+    </script>
+</body>
+</html>

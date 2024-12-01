@@ -1,0 +1,78 @@
+﻿@model DoAnCSN.Models.CUSTOMER
+
+@{
+    ViewBag.Title = "ChiTietDichVuKH";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+
+                <h4 class="page-title">Danh sách dịch vụ đăng kí</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label" for="simpleinput">
+                                Tên Khách
+                                Hàng
+                            </label>
+                            <div class="col-lg-3">
+                                <input type="text" class="form-control" id="simpleinput" value="@Model.HO_TEN" disabled>
+                            </div>
+
+                        </div>
+                    </form>
+
+
+
+                    <br>
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tên dịch vụ</th>
+                                    <th>Số ngày thực hiện</th>
+                                    <th>Số ngày còn lại</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var item in ViewBag.listDVKH)
+                                {
+                                    <tr>
+                                        <td></td>
+                                        <td>@item.TEN_DICH_VU</td>
+                                        <td>@item.SO_NGAY_THUC_HIEN</td>
+                                        <td>@item.SO_NGAY_CON_LAI</td>
+                                        <td>
+                                            <a href="@Url.Action("ChiTietDichVu", "Admin", new {MaKH = item.MaKH, MaDV = item.MaDV})" class="btn btn-success btn-sm">
+                                                <i class="fe-align-justify"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                                
+                               
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div> <!-- end card-box -->
+            </div> <!-- end card-->
+        </div><!-- end col -->
+    </div>
+
+</div> 

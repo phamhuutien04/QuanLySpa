@@ -1,0 +1,354 @@
+﻿@model IEnumerable<DoAnCSN.Models.CUSTOMER>
+@{
+    ViewBag.Title = "QuanLiDangKiTuVan";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row align-items-center justify-content-between">
+        <div class="page-title-box col-xl-6">
+            <p class="page-title" style="font-weight: bold;">
+                Danh sách Khách Hàng Hẹn Tư Vấn
+            </p>
+        </div>
+
+        <div class="col-xl-3">
+            <select name="MaTT" id="MaTT" class="form-control float-right" onchange="doiTrangThai()">
+                <option value="1" @(ViewBag.CurrentMaTT == 1 ? "selected" : "")>Chờ phân công</option>
+                <option value="2" @(ViewBag.CurrentMaTT == 2 ? "selected" : "")>Chờ tư vấn</option>
+                <option value="3" @(ViewBag.CurrentMaTT == 3 ? "selected" : "")>Đã tư vấn</option>
+                <option value="4" @(ViewBag.CurrentMaTT == 4 ? "selected" : "")>Chờ thanh toán</option>
+                <option value="5" @(ViewBag.CurrentMaTT == 5 ? "selected" : "")>Đã thanh toán</option>
+            </select>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Họ tên</th>
+                        <th>Ngày sinh</th>
+                        <th>Số điện thoại</th>
+                        <th>Ngày Tư Vấn</th>
+                        <th>Thời gian</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewBag.khs)
+                    {
+                        if (item.TEN_TRANG_THAI == "Chờ phân công" || item.TEN_TRANG_THAI == "Chờ tư vấn")
+                        {
+                            <tr>
+                                <td></td>
+                                <td>@item.HO_TEN</td>
+                                <td>@item.NGAY_SINH</td>
+                                <td>@item.PHONE_NUMBER</td>
+                                <td>@item.NGAY_TU_VAN</td>
+                                <td>@item.GIO</td>
+                                <td>@item.TEN_TRANG_THAI</td>
+                                <td>
+                                    <a href="@Url.Action("SuaTTKhachHang", "Admin", new {MaKH = item.ID})" class="btn btn-warning btn-sm waves-effect waves-light" title="Thêm ngày tư vấn">
+                                        <i class="fe-edit-2"></i>
+                                    </a>
+                                    <button type="button" data-customerid="@item.ID" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal" title="Phân công nhân viên">
+                                        <i class="fe-calendar"></i>
+                                    </button>
+                                    <input type="hidden" id="customerId" value="@item.ID" />
+                                </td>
+                            </tr>
+                        }
+                        else if (item.TEN_TRANG_THAI == "Chờ thanh toán")
+                        {
+                            <tr>
+                                <td></td>
+                                <td>@item.HO_TEN</td>
+                                <td>@item.NGAY_SINH</td>
+                                <td>@item.PHONE_NUMBER</td>
+                                <td>@item.NGAY_TU_VAN</td>
+                                <td>@item.GIO</td>
+                                <td>@item.TEN_TRANG_THAI</td>
+                                <td>
+                                    <a href="@Url.Action("XacNhanThanhToan", "Admin", new {MaKH = item.ID})" class="btn btn-success btn-sm">
+                                        Thanh Toán
+                                    </a>
+                                    <button class="btn btn-danger btn-sm" onclick="totalService()" data-customerid="@item.ID" data-toggle="modal" data-target="#myModal2">
+                                        Hóa đơn
+                                    </button>
+                                    <a href="@Url.Action("DangKiDV", "Admin", new {MaKH = item.ID})" class="btn btn-info btn-sm" title="Thêm dịch vụ">
+                                        <i class="fe-edit"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        }
+                        else if (item.TEN_TRANG_THAI == "Đã thanh toán")
+                        {
+                            <tr>
+                                <td></td>
+                                <td>@item.HO_TEN</td>
+                                <td>@item.NGAY_SINH</td>
+                                <td>@item.PHONE_NUMBER</td>
+                                <td>@item.NGAY_TU_VAN</td>
+                                <td>@item.GIO</td>
+                                <td>@item.TEN_TRANG_THAI</td>
+                                <td>
+                                </td>
+                            </tr>
+                        }
+                        else if(item.TEN_TRANG_THAI == "Đã tư vấn")
+                        {
+                            <tr>
+                                <td></td>
+                                <td>@item.HO_TEN</td>
+                                <td>@item.NGAY_SINH</td>
+                                <td>@item.PHONE_NUMBER</td>
+                                <td>@item.NGAY_TU_VAN</td>
+                                <td>@item.GIO</td>
+                                <td>@item.TEN_TRANG_THAI</td>
+                                <td>
+                                    @*<a href="@Url.Action("SuaTTKhachHang", "Admin", new {MaKH = item.ID})" class="btn btn-warning btn-sm waves-effect waves-light">
+                                        <i class="fe-edit-2"></i>
+                                    </a>*@
+                                    @*<button type="button" data-customerid="@item.ID" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">
+                                        <i class="fe-calendar"></i>
+                                    </button>*@
+                                    <input type="hidden" id="customerId" value="@item.ID" />
+                                    <a href="@Url.Action("DangKiDV", "Admin", new {MaKH = item.ID})" class="btn btn-info btn-sm" title="Thêm dịch vụ">
+                                        <i class="fe-edit"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div> <!-- container-fluid -->
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tên nhân viên</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeeTableBody">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="assignButton" class="btn btn-danger">Phân công</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<h4 class="modal-title">Tên Khách Hàng </h4>*@
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Tên dịch vụ</th>
+                            <th>Số buổi</th>
+                            <th>Tổng tiền</th>
+                            @*<th>Tình trạng thanh toán</th>
+                            <th>Hình thức thanh toán</th>*@
+                        </tr>
+                    </thead>
+                    <tbody id="dichVuTableBody">
+
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="modal-footer">
+                @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+        function doiTrangThai() {
+            const MaTT = $("#MaTT").val();
+            console.log(MaTT);
+
+            $.ajax({
+                url: '@Url.Action("QuanLiDangKiTuVan", "Admin")',
+                type: 'GET',
+                data: { MaTT: MaTT },
+                success: function () {
+                    console.log('success');
+                    window.location.href = '/Admin/QuanLiDangKiTuVan?MaTT=' + MaTT;
+                },
+                error: function () {
+                    console.log('error')
+                }
+            })
+
+        }
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Khi modal mở, gọi danh sách nhân viên
+        $('#myModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Nút kích hoạt modal
+            var customerId = button.data('customerid'); // Lấy ID khách hàng từ thuộc tính data-customerid
+            $('#customerId').val(customerId); // Gán ID vào input ẩn
+
+            // Lấy danh sách nhân viên cùng với trạng thái phân công
+            $.ajax({
+                url: '@Url.Action("AssignEmployee", "Admin")',
+                type: 'GET',
+                data: { MaKH: customerId },
+                success: function (data) {
+                    var employeeTableBody = $('#employeeTableBody');
+                    employeeTableBody.empty(); // Xóa các hàng cũ
+
+                    // Thêm các nhân viên vào bảng
+                    $.each(data, function (index, employee) {
+                        employeeTableBody.append(`
+                            <tr>
+                                <td></td>
+                                <td>${employee.NAME}</td>
+                                <td><input type="radio" name="employee" class="employeeCheckbox" value="${employee.ID}" ${employee.Assigned ? 'checked' : ''} /></td>
+
+                            </tr>
+                        `);
+                    });
+                },
+                error: function () {
+                    console.log('error');
+                }
+            });
+        });
+
+        // Xử lý phân công nhân viên
+        $('#assignButton').on('click', function () {
+            var customerId = $('#customerId').val();
+            var selectedEmployee;
+
+            // Lấy các ID nhân viên được chọn
+            //$('.employeeCheckbox:checked').each(function () {
+            //    selectedEmployees.push($(this).val());
+            //});
+
+            selectedEmployee = $('.employeeCheckbox:checked').val();
+
+            // Gọi action để phân công nhân viên
+            $.ajax({
+                url: '@Url.Action("AssignEmployee", "Admin")',
+                type: 'POST',
+                data: { customerId: customerId, employeeId: selectedEmployee }, // Gửi danh sách ID nhân viên
+                success: function (response) {
+                    if (response.success) {
+                        console.log('success');
+                        window.location.reload('/Admin/QuanLiDangKiTuVan?MaTT=2');
+
+                        // Cập nhật lại danh sách khách hàng nếu cần thiết
+                    }
+                    else {
+                        alert('Trùng lịch nhân viên này')
+                    }
+                },
+                error: function () {
+                    console.log('error');
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        // Khi modal mở, gọi danh sách nhân viên
+        $('#myModal2').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Nút kích hoạt modal
+            var customerId = button.data('customerid'); // Lấy ID khách hàng từ thuộc tính data-customerid
+            $('#customerId').val(customerId); // Gán ID vào input ẩn
+
+            // Lấy danh sách nhân viên cùng với trạng thái phân công
+            $.ajax({
+                url: '@Url.Action("DVKH", "Admin")',
+                type: 'GET',
+                data: { MaKH: customerId },
+                success: function (data) {
+                    var dichVuTableBody = $('#dichVuTableBody');
+                    dichVuTableBody.empty(); // Xóa các hàng cũ
+
+                    // Thêm các nhân viên vào bảng
+                    $.each(data, function (index, dichvu) {
+                        dichVuTableBody.append(`
+                        <tr>
+                            <td></td>
+                            <td>${dichvu.TEN_DICH_VU}</td>
+                            <td>${dichvu.SO_NGAY_THUC_HIEN}</td>
+                            <td>${dichvu.giaTien * dichvu.SO_NGAY_THUC_HIEN}.000</td>
+                            
+                        </tr>
+                    `);
+                    });
+                },
+                error: function () {
+                    console.log('error');
+                }
+            });
+        });
+
+
+        
+    });
+   
+    
+</script>
+
+@*<script>
+    function totalService() {
+        const priceCells = document.querySelectorAll('#dichVuTableBody tr .price');
+
+        // Calculate the total
+        let total = 0;
+        priceCells.forEach(cell => {
+            console.log(cell);
+            total += parseInt(cell.textContent.replace('.000', ''));
+        });
+
+        // Display the total
+        document.getElementById('total-amount').textContent = total.toLocaleString() + '.000';
+    }
+    
+</script>*@

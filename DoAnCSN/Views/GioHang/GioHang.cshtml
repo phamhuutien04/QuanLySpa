@@ -1,0 +1,204 @@
+﻿@using DoAnCSN.Models
+
+@model List<GioHang>
+
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2 style="text-align:center;">THÔNG TIN GIỎ HÀNG</h2>
+
+@{
+    bool isLoggedIn = Session["USER_NAME"] != null && !string.IsNullOrEmpty(Session["USER_NAME"].ToString());
+}
+
+<head>
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/giohang.css?v=" + DateTime.Now.Ticks)" />
+</head>
+<style>
+    /* Full-screen background overlay */
+    .overlay {
+        display: none; /* Initially hidden */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        z-index: 1000; /* Ensure it appears on top */
+    }
+
+    /* Centered QR section popup */
+    .qr-section {
+        display: none; /* Initially hidden */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: auto;
+        padding: 20px;
+        background-color: #fff; /* White background */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1001; /* Above overlay */
+        text-align: center;
+    }
+
+        .qr-section h2 {
+            margin-top: 0;
+        }
+
+        .qr-section .qr-code {
+            width: 300px;
+            height: auto;
+            margin: 15px 0;
+        }
+
+        .qr-section button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .qr-section .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #4CAF50;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+</style>
+
+<script>
+    const isUserLoggedIn = @isLoggedIn.ToString().ToLower();
+
+    function handleCheckout() {
+        if (!isUserLoggedIn) {
+            window.location.href = '@Url.Action("DangNhap", "User")';
+            return;
+        }
+        handlePayment();
+    }
+
+    function handlePayment() {
+        const onlinePayment = document.getElementById("online");
+        const offlinePayment = document.getElementById("offline");
+
+        if (onlinePayment.checked) {
+            document.querySelector('.qr-section').style.display = 'block';
+
+            setTimeout(() => {
+                document.getElementById('btnConfirmPayment').click();
+            }, 15000);
+        } else if (offlinePayment.checked) {
+            document.getElementById("paymentForm").submit();
+        }
+    }
+
+    function closeSection() {
+        document.querySelector('.qr-section').style.display = 'none';
+    }
+    function reloadPage() {
+        // Làm mới trang để lấy lại giá trị @ViewBag.SoHoaDon
+    location.reload();
+}
+
+
+</script>
+
+<body>
+    <div class="cart-container">
+        <div class="cart-items">
+            <h1>Giỏ hàng</h1>
+            <h1>@Session["alertPayment"]</h1>
+            @foreach (var item in Model)
+            {
+                <div class="cart-item">
+                    <form style="padding: 0 10px;" action="@Url.Action("XoaSPKhoiGioHang", "GioHang")" method="get">
+                        <input type="hidden" name="sTENSP" value="@item.iID" />
+                        <button type="submit" class="delete-button">x</button>
+                    </form>
+
+                    <img src="~/Image/SanPham/@item.sHINH_ANH" alt="@item.sTENSP" class="item-image">
+                    <div class="item-details">
+                        <p>@item.sTENSP</p>
+                        <span>Số lượng: @item.iSoLuong</span>
+                    </div>
+                    <div class="item-quantity">
+                        <form action="@Url.Action("CapNhatGioHang", "GioHang")" method="post">
+                            <input type="hidden" name="iID" value="@item.iID" />
+                            <input type="hidden" name="operation" value="decrease" />
+                            <button type="submit">-</button>
+                        </form>
+
+                        <span style="padding: 0 10px;">@item.iSoLuong</span>
+
+                        <form action="@Url.Action("CapNhatGioHang", "GioHang")" method="post">
+                            <input type="hidden" name="iID" value="@item.iID" />
+                            <input type="hidden" name="operation" value="increase" />
+                            <button type="submit">+</button>
+                        </form>
+                    </div>
+                    <div class="item-price">@String.Format("{0:#,##0,0}", item.dGIA)₫</div>
+                </div>
+            }
+
+            <div class="order-notes">
+                <label for="notes">Ghi chú đơn hàng</label>
+                <textarea id="notes" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="checkout-section">
+            <div class="order-summary">
+                <div class="total-amount">
+                    <span>Tổng cộng</span>
+                    <span class="price">@String.Format("{0:#,##0,0}", ViewBag.TongTien)₫</span>
+                </div>
+                <p>(Đã bao gồm VAT nếu có)</p>
+            </div>
+            <hr>
+            <div class="discount-code">
+                <img src="//bizweb.dktcdn.net/100/343/638/themes/945628/assets/coupon-icon.png?1727499006206" alt="delivery">
+                <label for="discount"> mã giảm giá</label>
+                <button>Chọn mã giảm giá</button>
+            </div>
+            <hr>
+            <div class="paymentt">
+                <img class="img-fluid" src="//bizweb.dktcdn.net/100/343/638/themes/945628/assets/footer_trustbadge.png?1727499006206" alt="Phương thức thanh toán" width="277" height="34">
+            </div>
+            <h2>Chọn Phương Thức Thanh Toán</h2>
+            <form id="paymentForm" action="@Url.Action("DatHang", "GioHang")" method="post">
+                <input type="radio" id="online" name="paymentMethod" value="online" checked /> Thanh Toán Online
+                <input type="radio" id="offline" name="paymentMethod" value="offline" /> Thanh Toán Offline
+            </form>
+            <button class="payment-button" onclick="handleCheckout()">Xác nhận thanh toán</button>
+        </div>
+
+        <div class="qr-section" style="display:none;">
+            <button class="close-button" onclick="closeSection()">X</button>
+            <h2>Quét Mã QR Để Thanh Toán</h2>
+            <img src="https://qr.ecaptcha.vn/api/generate/Mb/0968003420/Nguyen%20Chi%20Cuong?amount=@Url.Encode(ViewBag.TongTien.ToString())&memo=@Url.Encode(ViewBag.SoHoaDon)&is_mask=0&bg=7" alt="Mã QR" class="qr-code">
+            <p>Vui lòng quét mã QR để thanh toán qua ứng dụng ngân hàng.</p>
+            <p>Nội Dung chuyển khoản: @ViewBag.SoHoaDon</p>
+            @using (Html.BeginForm("XacNhanThanhToan", "GioHang", FormMethod.Post))
+            {
+                <input type="text" name="phuongThucThanhToan" value="online" hidden />
+                <input type="text" name="content" value="@ViewBag.SoHoaDon" hidden />
+                <input type="text" name="amount" value="@ViewBag.TongTien" hidden />
+                <button id="btnConfirmPayment" type="submit" hidden>Xác nhận thanh toán</button>
+            }
+        </div>
+    </div>
+
+
+</body>

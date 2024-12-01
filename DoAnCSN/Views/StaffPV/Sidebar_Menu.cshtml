@@ -1,0 +1,19 @@
+﻿<div id="sidebar-menu">
+    <ul class="metismenu" id="side-menu">
+        <li class="menu-title">Danh mục</li>
+        <li>
+            <a href="@Url.Action("ThoiGianBieuPV", "StaffPV", new {MaNV = Session["MaNV"] })">
+                <i class="fe-airplay"></i>
+                <span> Thời gian biểu </span>
+            </a>
+        </li>
+
+        <li>
+            <a href="@Url.Action("LichSuChamSoc", "StaffPV", new {MaNV = Session["MaNV"] })">
+                <i class="mdi mdi-account-group"></i>
+                <span> Lịch sử chăm sóc </span>
+            </a>
+        </li>
+    </ul>
+</div>
+

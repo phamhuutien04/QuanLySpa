@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "XacNhanDonHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style>
+    .confirmation-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 100px 0 100px 0;
+    }
+
+    .confirmation-box {
+        background-color: #e6f4ea;
+        padding: 30px;
+        border: 1px solid #c3e6cb;
+        border-radius: 8px;
+        text-align: center;
+        width: 320px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease-in-out;
+    }
+
+        .confirmation-box:hover {
+            transform: scale(1.02);
+        }
+
+        .confirmation-box h2 {
+            color: #28a745;
+            margin: 0 0 10px 0;
+            font-size: 24px;
+        }
+
+        .confirmation-box p {
+            color: #333;
+            font-size: 16px;
+            margin: 10px 0 20px;
+        }
+
+    .back-button {
+        display: inline-block;
+        padding: 10px 20px;
+        color: #fff;
+        background-color: #28a745;
+        border: none;
+        border-radius: 4px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+        .back-button:hover {
+            background-color: #218838;
+        }
+</style>
+
+<div class="confirmation-container">
+    <div class="confirmation-box">
+        <h2>Xác nhận thành công</h2>
+        <p>Cảm ơn bạn! Giao dịch của bạn đã được thực hiện thành công.</p>
+        <a href="@Url.Action("TrangChu", "Home")" class="back-button">Quay lại trang chủ</a>
+    </div>
+</div>

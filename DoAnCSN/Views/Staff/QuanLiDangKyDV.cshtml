@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "QuanLiDangKyDV";
+    Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+
+                <h4 class="page-title">Đăng kí dịch vụ</h4>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label" for="simpleinput">Tên Khách Hàng</label>
+                            <div class="col-lg-3">
+                                <input type="text" class="form-control" disabled>
+                            </div>
+                            <label class="col-lg-2 col-form-label" for="simpleinput">Số điện thoại</label>
+                            <div class="col-lg-3">
+                                <input type="text" class="form-control" disabled>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    <form class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label" for="simpleinput">
+                                Dịch vụ chăm
+                                sóc
+                            </label>
+                            <div class="col-lg-3">
+                                <select class="form-control" name="" id="">
+                                    <option value="">--Chọn dịch vụ--</option>
+                                    <option value="">Chăm sóc da</option>
+                                    <option value="">Tắm trắng</option>
+                                    <option value="">Nặn mụn</option>
+                                </select>
+                            </div>
+                            <label class="col-lg-2 col-form-label" for="simpleinput">
+                                Chọn số buổi
+                            </label>
+                            <div class="col-lg-2">
+                                <select class="form-control" name="" id="">
+                                    <option value=""></option>
+                                    <option value="">1</option>
+                                    <option value="">2</option>
+                                    <option value="">3</option>
+                                    <option value="">4</option>
+                                    <option value="">5</option>
+                                </select>
+                            </div>
+                            <label class="col-lg-1 col-form-label" for="example-date">Giá tiền</label>
+                            <div class="col-lg-2">
+                                <input class="form-control" type="text" disabled>
+                            </div>
+                        </div>
+                    </form>
+                    <br>
+                    <form class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label" for="simpleinput">
+                                Thời gian
+                            </label>
+                            <input type="text" class="col-lg-2 form-control" />
+                        </div>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Dịch vụ</th>
+                                    <th>Số buổi</th>
+                                    <th>Giá</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Tắm Trắng</td>
+                                    <td>3 Ngày</td>
+                                    <td>100.000 VND</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Nặn mụn</td>
+                                    <td>2 Ngày</td>
+                                    <td>200.000 VND</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Chăm sóc da</td>
+                                    <td>4 Ngày</td>
+                                    <td>300.000 VND</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br>
+
+                    <div class="button-list">
+                        <button type="button"
+                                class="btn btn-danger waves-effect waves-light float-right"
+                                data-toggle="modal" data-target="#centermodal">
+                            <i class="fe-trash-2"></i>
+                        </button>
+                        <button type="button"
+                                class="btn btn-primary waves-effect waves-light float-right"
+                                data-toggle="modal" data-target="#bs-example-modal-sm">
+                            <i class="fe-edit-1"></i>
+                        </button>
+                        <button type="button"
+                                class="btn btn-success waves-effect waves-light float-right"
+                                data-toggle="modal" data-target="#bs-example-modal-sm">
+                            <i class="fe-check"></i>
+                        </button>
+                    </div>
+
+
+                </div> <!-- end card-box -->
+            </div> <!-- end card-->
+        </div><!-- end col -->
+    </div>
+
+</div> <!-- container-fluid -->

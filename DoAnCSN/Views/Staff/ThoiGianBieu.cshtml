@@ -1,0 +1,75 @@
+﻿@model IEnumerable<DoAnCSN.Models.CUSTOMER>
+
+@{
+    ViewBag.Title = "ThoiGianBieu";
+    Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+}
+
+<style>
+    .checked {
+        text-decoration: line-through;
+    }
+</style>
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="page-title-box">
+            <p class="page-title" style="font-weight: bold;">
+                Danh sách Khách Hàng Hẹn Tư Vấn
+            </p>
+        </div>
+
+
+        <div class="table-responsive">
+            <table class="table table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Họ tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Ngày Tư Vấn</th>
+                        <th>Thời gian</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        @*if (item.MaTT == 3) //kiểm tra đã tư vấn chưa
+                        {
+                            <tr>
+                                <td></td>
+                                <td class="checked">@item.HO_TEN</td>
+                                <td class="checked">@item.PHONE_NUMBER</td>
+                                <td class="checked">@item.NGAY_TU_VAN</td>
+                                <td class="checked">@item.GIO</td>
+                                <td>Đã tư vấn</td>
+                            </tr>
+                        }*@
+
+                        if(item.MaTT == 2)
+                        {
+                            <tr>
+                                <td></td>
+                                <td>@item.HO_TEN</td>
+                                <td>@item.PHONE_NUMBER</td>
+                                <td>@item.NGAY_TU_VAN</td>
+                                <td>@item.GIO</td>
+                                <td>
+                                    <a href="@Url.Action("Checked", "Staff", new { MaKH = item.ID })" class="btn btn-success btn-sm">
+                                        <i class="fe-check"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <h4>@TempData["Error"]</h4>
+    </div>
+
+
+</div> <!-- container-fluid -->

@@ -1,0 +1,131 @@
+﻿@model IEnumerable<DoAnCSN.Models.SANPHAM>
+@{
+    ViewBag.Title = "QuanLiSanPham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Quản lí sản phẩm</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <h2>Kết quả tìm kiếm</h2>
+
+        <form method="get" action="@Url.Action("Search", "Admin")" class="form-horizontal">
+            <div class="form-group row">
+                <label for="productName" class="col-lg-1 col-form-label">Tên sản phẩm</label>
+                <div class="col-lg-5">
+                    <input type="text" name="productName" class="form-control" id="productName" placeholder="Nhập tên sản phẩm" value="@ViewBag.ProductName" />
+                </div>
+                <label for="productType" class="col-lg-1 col-form-label">Loại sản phẩm</label>
+                <div class="col-lg-4">
+                    <select name="productType" id="productType" class="form-control">
+                        <option value="">--Chọn loại sản phẩm--</option>
+                        <option value="Chăm sóc da" @(ViewBag.ProductType == "Chăm sóc da" ? "selected" : "")>Chăm sóc da</option>
+                        <option value="Sữa rửa mặt" @(ViewBag.ProductType == "Sữa rửa mặt" ? "selected" : "")>Sữa rửa mặt</option>
+                        <option value="Chăm sóc tóc" @(ViewBag.ProductType == "Chăm sóc tóc" ? "selected" : "")>Chăm sóc tóc</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="priceFrom" class="col-lg-1 col-form-label">Giá cả từ</label>
+                <div class="col-lg-3">
+                    <input type="text" name="priceFrom" class="form-control" id="priceFrom" placeholder="Giá từ" value="@ViewBag.PriceFrom" />
+                </div>
+                <label for="priceTo" class="col-lg-1 col-form-label">Giá cả đến</label>
+                <div class="col-lg-3">
+                    <input type="text" name="priceTo" class="form-control" id="priceTo" placeholder="Giá đến" value="@ViewBag.PriceTo" />
+                </div>
+            </div>
+            <div class="button-list">
+                <a href="../Admin/ThemSanPham.html" class="btn btn-warning float-right" title="Thêm sản phẩm">
+                    <i class="fe-plus"></i>
+                </a>
+                <button type="submit" class="btn btn-success float-right" title="Tìm kiếm sản phẩm">
+                    <i class="fe-search"></i>
+                </button>
+            </div>
+        </form>
+        <form method="post" action="@Url.Action("SuaSanPham", "Admin")">
+            <table class="table mb-0">
+                <thead class="thead-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Hình ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Mô tả</th>
+                        <th>Hạn sử dụng</th>
+                        <th>Giá cả</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count(); i++)
+                    {
+                        var product = Model.ElementAt(i);
+                        <tr>
+                            <th scope="row">@product.ID</th>
+                            <th>
+                                <img src="@Url.Content("~/Image/SanPham/" + product.HINH_ANH)" alt="@product.TENSP" style="width: 70px; height: 70px;" />
+                            </th>
+                            <td>
+                                <input type="hidden" name="Products[@i].ID" value="@product.ID" />
+                                <input type="text" name="Products[@i].TENSP" value="@product.TENSP" class="form-control" />
+                            </td>
+                            <td>
+                                <input type="text" name="Products[@i].MOTA_SP" value="@product.MOTA_SP" class="form-control" />
+                            </td>
+                            <td>
+                                <input type="text" name="Products[@i].NAM_SAN_XUAT" value="@product.NAM_SAN_XUAT" class="form-control" />
+                            </td>
+                            <td>
+                                <input type="text" name="Products[@i].GIA" value="@product.GIA" class="form-control" />
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-success btn-sm" title="Lưu sản phẩm" style="padding: 6px 12px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); ">
+                                    <i class="fe-save" style="margin-right: 5px;"></i> Lưu
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm" title="Xóa sản phẩm" style="padding: 6px 12px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); margin-top: 10px">
+                                    <i class="fe-trash-2" style="margin-right: 5px;"></i> Xóa
+                                </button>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </form>
+    </div>
+    @*<div class="pagination">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <a href="@Url.Action("Search", new { page = ViewBag.CurrentPage - 1 })">Trang trước</a>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                <span class="current-page">@i</span> 
+            }
+            else
+            {
+                <a href="@Url.Action("Search", new { page = i })">@i</a>
+            }
+
+
+        }
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <a href="@Url.Action("Search", new { page = ViewBag.CurrentPage + 1 })">Trang sau</a>
+        }
+
+    </div>*@
+</div>

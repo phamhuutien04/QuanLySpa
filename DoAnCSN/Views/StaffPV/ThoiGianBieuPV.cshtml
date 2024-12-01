@@ -1,0 +1,102 @@
+﻿@model IEnumerable<DoAnCSN.Models.ChiTietDVKH>
+
+@{
+    ViewBag.Title = "ThoiGianBieuPV";
+    Layout = "~/Views/Shared/_LayoutStaffPV.cshtml";
+}
+
+<style>
+    .checked {
+        text-decoration: line-through;
+    }
+</style>
+<div class="container-fluid">
+
+    <div class="row justify-content-between">
+        <div class="page-title-box">
+            <p class="page-title" style="font-weight: bold;">
+                Danh sách Khách Hàng phục vụ
+            </p>
+        </div>
+        <div class="page-title-box ">
+            <p class="page-title" style="font-weight: bold;">
+                @TempData["Message"]
+            </p>
+        </div>
+
+
+        <div class="table-responsive">
+            <table class="table table-striped mb-0">
+                <thead>
+                    <tr>
+                        @*<th>#</th>*@
+                        <th>Tên Khách Hàng</th>
+                        <th>Số điện thoại</th>
+                        <th>Buổi</th>
+                        <th>Tên dịch vụ</th>
+                        <th>Tên Quy Trình</th>
+                        <th>Thời Gian Từ</th>
+                        <th>Thời Gian Từ</th>
+                        <th>Ngày Thực Hiện</th>
+                        <th>Xác nhân hoàn thành</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.lstDVKH)
+                    {
+                        
+                        if(item.Checked == 0)
+                        {
+                            <tr>
+                                <td>@item.HO_TEN</td>
+                                <td>@item.PHONE_NUMBER</td>
+                                <td>@item.Buoi</td>
+                                <td>@item.TEN_DICH_VU</td>
+                                <td>@item.TEN_QUY_TRINH</td>
+                                <td>@item.THOI_GIAN_TU</td>
+                                <td>@item.THOI_GIAN_DEN</td>
+                                <td>@item.NGAY_THUC_HIEN</td>
+                                <td>
+                                    <form action="/StaffPV/XacNhanHoanThanh" method="post" enctype="multipart/form-data">
+
+                                        <input type="file" name="imageFile" id="imageFile" />
+
+                                        <input type="hidden" value="@item.MaKH" name="MaKH" />
+                                        <input type="hidden" value="@item.MaNV" name="MaNV" />
+                                        <input type="hidden" value="@item.MaDV" name="MaDV" />
+                                        <input type="hidden" value="@item.Buoi" name="Buoi" />
+
+
+                                        @*<a href="@Url.Action("XacNhanHoanThanh", "StaffPV", new {MaKH = item.MaKH, MaNV = item.MaNV, MaDV = item.MaDV, Buoi = item.Buoi})" class="btn btn-success btn-sm">
+                Hoàn thành
+            </a>*@
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            Hoàn thành
+                                        </button>
+
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div> <!-- container-fluid -->
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    document.getElementById('imageFile').addEventListener('change', function () {
+        // Lấy tên file từ input file
+        var fileName = this.files[0]?.name || '';
+
+        // Gán tên file vào input hidden
+        document.querySelector('#imageFile1').value = fileName;
+    });
+
+
+</script>*@

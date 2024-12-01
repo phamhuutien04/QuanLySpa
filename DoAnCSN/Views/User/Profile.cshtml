@@ -1,0 +1,160 @@
+﻿@model DoAnCSN.Models.AccountCustomer
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<style>
+    .profile-container {
+        background-color: #ffffff;
+        padding: 40px 30px;
+        border-radius: 15px;
+        max-width: 850px;
+        width: 100%;
+        animation: fadeIn 0.3s ease-in-out;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        margin: 0 auto;
+    }
+
+    .profile-card,
+    .password-section {
+        padding: 20px 20px;
+        width: 48%;
+        box-sizing: border-box;
+    }
+
+    .profile-info {
+        margin-bottom: 20px;
+    }
+
+    .profile-label {
+        font-weight: bold;
+        color: #555;
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+
+    .profile-input,
+    .password-input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 15px;
+        color: #333;
+        background-color: #f9f9f9;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .profile-input:focus,
+        .password-input:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
+            outline: none;
+        }
+
+    .profile-btn-save,
+    .password-btn {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #66bb6a, #43a047);
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.2s ease;
+        margin-top: 10px;
+    }
+
+    .message {
+        background-color: #4CAF50; /* Green background for success */
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        margin-top: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        opacity: 0; /* Start with fully transparent */
+        /*animation: fadeIn 0.5s ease-in-out, fadeOut 2s 2s forwards;*/ /* Fade-in then fade-out after 2s */
+    }
+
+    .profile-btn-save:hover,
+    .password-btn:hover {
+        background: linear-gradient(135deg, #43a047, #388e3c);
+        transform: translateY(-2px);
+    }
+
+    .profile-btn-save:active,
+    .password-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+</style>
+<h1 class="message">@TempData["thongbao"]</h1>
+<div class="profile-container">
+    <div class="profile-card">
+        <!-- Add Anti-Forgery Token for CSRF protection -->
+        <form action="/User/Profile" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="profile-info">
+                <label class="profile-label" for="name">Họ và tên:</label>
+                <input type="text" class="profile-input" id="name" name="NAME" value="@Model.NAME" required>
+            </div>
+            <div class="profile-info">
+                <label class="profile-label" for="email">Email:</label>
+                <input type="email" class="profile-input" id="email" name="EMAIL" value="@Model.EMAIL" required>
+            </div>
+            <div class="profile-info">
+                <label class="profile-label" for="phone">Số điện thoại:</label>
+                <input type="tel" class="profile-input" id="phone" name="PHONE_NUMBER" value="@Model.PHONE_NUMBER" required>
+            </div>
+            <div class="profile-info">
+                <label class="profile-label" for="address">Địa chỉ:</label>
+                <input type="text" class="profile-input" id="address" name="DiaChi" value="@Model.DIACHI" required>
+            </div>
+            <input type="hidden" name="MaTK" value="@Model.ID" />
+            <button type="submit" class="profile-btn-save">Lưu Thông Tin</button>
+        </form>
+    </div>
+
+    <!-- Password Change Section -->
+    <div class="password-section">
+        <h3>Đổi Mật Khẩu</h3>
+        <form action="/User/DoiPass" method="post">
+            @Html.AntiForgeryToken()
+            <div class="profile-info">
+                <label class="profile-label" for="currentPassword">Mật khẩu mới:</label>
+                <input type="password" class="password-input" id="currentPassword" name="CurrentPassword" required>
+            </div>
+            <div class="profile-info">
+                <label class="profile-label" for="newPassword">Mật khẩu mới:</label>
+                <input type="password" class="password-input" id="newPassword" name="NewPassword" required>
+            </div>
+            <div class="profile-info">
+                <label class="profile-label" for="confirmPassword">Xác nhận mật khẩu mới:</label>
+                <input type="password" class="password-input" id="confirmPassword" name="ConfirmPassword" required>
+            </div>
+            <button type="submit" class="password-btn">Lưu Mật Khẩu Mới</button>
+        </form>
+    </div>
+</div>
+
+
+
+

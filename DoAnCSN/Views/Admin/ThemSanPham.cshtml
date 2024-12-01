@@ -1,0 +1,103 @@
+﻿@model DoAnCSN.Models.SANPHAM
+
+@{
+    ViewBag.Title = "ThemSanPham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@if (TempData["Message"] != null)
+{
+    <h2>2</h2>
+    <div class="alert alert-success">
+
+        @TempData["Message"]
+    </div>
+}
+<div class="container-fluid">
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+
+                <h4 class="page-title">Thêm Sản Phẩm<h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <br>
+                    @using (Html.BeginForm("ThemSanPham", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.TENSP, "Tên sản phẩm", new { @class = "col-lg-2 col-form-label" })
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(model => model.TENSP, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.TENSP)
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.LOAISP, "Loại sản phẩm", new { @class = "col-lg-2 col-form-label" })
+                                <div class="col-lg-10">
+                                    @Html.DropDownListFor(model => model.LOAISP, new SelectList(new List<string> { "Chăm sóc da", "Sữa rửa mặt", "Chăm sóc tóc" }), "--Chọn loại sản phẩm--", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.LOAISP)
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.GIA, "Giá cả", new { @class = "col-lg-2 col-form-label" })
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(model => model.GIA, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.GIA)
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                @Html.LabelFor(model => model.SO_LUONG, "Số Lượng", new { @class = "col-lg-2 col-form-label" })
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(model => model.SO_LUONG, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.SO_LUONG)
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Hình đại diện</label>
+                                <div class="col-lg-10">
+                                    <input type="file" name="HinhAnhFiles" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row justify-content-end">
+                                <div class="col-lg-2">
+                                    <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+                                </div>
+                                <div class="col-lg-2">
+
+                                    <a href="@Url.Action("QuanLiSanPham", "Admin")" class="btn btn-secondary">Hủy thao tác</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("ImportExcel", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <label for="file">Chọn file Excel:</label>
+            <input type="file" name="file" id="file" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Tải lên</button>
+    }
+
+
+</div>

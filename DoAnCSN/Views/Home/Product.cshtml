@@ -1,0 +1,138 @@
+﻿@model IEnumerable<DoAnCSN.Models.SANPHAM>
+
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="prev_links_params">
+ <section>
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <a href="@Url.Action("Product", new { page = ViewBag.CurrentPage - 1 })" class="prev_link">Trang trước</a>
+        }
+        <span class="brick_page">/</span>
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <a href="@Url.Action("Product", new { page = ViewBag.CurrentPage + 1 })" class="next_link">Trang sau</a>
+        }
+    </section>
+    <section>
+        <span>Hiển thị một kết quả duy nhất</span>
+        <select name="sort_by">
+            <option value="relevance">Thứ tự mặc định</option>
+            <option value="price_asc">Thứ tự theo giá</option>
+            <option value="price_desc">Thứ tự theo bảng chữ cái</option>
+        </select>
+    </section>
+</div>
+
+<div class="content">
+    <div class="content_left">
+        <div class="title">
+            <span>BÀI VIẾT MỚI</span>
+        </div>
+        <div class="lists">
+            <ul>
+                <li>
+                    <div class="poster">
+                        <img src="https://naidecor.vn/wp-content/uploads/2020/07/BST-MP-11.jpg" width="50">
+                    </div>
+                    <div class="des">
+                        <span>Lễ chuyển giao công nghệ Hàn Quốc xóa nhăn, giảm mỡ thừa</span>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="poster">
+                        <img src="https://naidecor.vn/wp-content/uploads/2020/07/BST-MP-11.jpg" width="50">
+                    </div>
+                    <div class="des">
+                        <span>Lễ chuyển giao công nghệ Hàn Quốc xóa nhăn, giảm mỡ thừa</span>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="poster">
+                        <img src="https://naidecor.vn/wp-content/uploads/2020/07/BST-MP-11.jpg" width="50">
+                    </div>
+                    <div class="des">
+                        <span>Lễ chuyển giao công nghệ Hàn Quốc xóa nhăn, giảm mỡ thừa</span>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="poster">
+                        <img src="https://naidecor.vn/wp-content/uploads/2020/07/BST-MP-11.jpg" width="50">
+                    </div>
+                    <div class="des">
+                        <span>Lễ chuyển giao công nghệ Hàn Quốc xóa nhăn, giảm mỡ thừa</span>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="poster">
+                        <img src="https://naidecor.vn/wp-content/uploads/2020/07/BST-MP-11.jpg" width="50">
+                    </div>
+                    <div class="des">
+                        <span>Lễ chuyển giao công nghệ Hàn Quốc xóa nhăn, giảm mỡ thừa</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content_right">
+        <ul>
+            @foreach (var product in Model)
+            {
+                <li>
+                    <section>
+                        <div class="poster">
+                            <img src="@Url.Content("~/Image/SanPham/" + product.HINH_ANH)" alt="@product.TENSP" />
+                        </div>
+                        <div class="des">
+                            <h3>
+                                <a href="~/Home/ChiTietSanPham?id=@product.ID" class="list-group">@product.TENSP</a>
+                            </h3>
+                            <p>@String.Format("{0:#,##0,0}", product.GIA)₫</p>
+                            <p>Số lượng: @product.SO_LUONG</p>
+                            <div class="button-list">
+                                <button type="button" class="button">Mua Ngay</button>
+                                <button type="button" class="button" onclick="location.href='@Url.Action("ThemGioHang","GioHang", new { ms = product.ID, url = Request.Url.ToString() })'">
+                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Thêm sản phẩm
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </li>
+            }
+        </ul>
+        <div class="pagination">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <a href="@Url.Action("Product", new { page = ViewBag.CurrentPage - 1 })">Trang trước</a>
+            }
+
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                if (i == ViewBag.CurrentPage)
+                {
+                    <span class="current-page">@i</span>
+                }
+                else
+                {
+                    <a href="@Url.Action("Product", new { page = i })">@i</a>
+                }
+            }
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+            {
+                <a href="@Url.Action("Product", new { page = ViewBag.CurrentPage + 1 })">Trang sau</a>
+            }
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,179 @@
+.main .row{
+    margin-top: 50px;
+    justify-content: space-between;
+}
+
+.main .img {
+    width: 45%;
+    height: auto;
+}
+
+.main .img img {
+    width: 100%;
+    height: auto;
+}
+
+.main .description {
+    width: 50%;
+}
+
+.main .description nav a {
+    text-decoration: none;
+    color: #8A8A8A;
+}
+
+.main .description nav a:hover {
+    color: #000;
+}
+
+.main .description h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #156953;
+}
+
+.main .description .product {
+    display: block;
+    margin-top: 45px;
+    margin-bottom: 20px;
+}
+
+.main .description .icon-social {
+    display: flex;
+}
+
+.main .description .icon-social i {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #8A8A8A;
+    color: #8A8A8A;
+    border-radius: 50%;
+    margin:0 10px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.main .description .icon-social i:first-child {
+    margin-left: 0;
+}
+
+.main .description .icon-social i:hover:first-child {
+    background-color: #3A589D;
+    border: 2px solid #3A589D;
+    color: #fff;
+}
+
+.main .description .icon-social i:hover:nth-child(2) {
+    background-color: #2478BA;
+    border: 2px solid #2478BA;
+    color: #fff;
+}
+
+.main .description .icon-social i:hover:nth-child(3) {
+    background-color: #000;
+    border: 2px solid #000;
+    color: #fff;
+}
+
+.main .description .icon-social i:hover:nth-child(4) {
+    background-color: #CB2320;
+    border: 2px solid #CB2320;
+    color: #fff;
+}
+
+.main .description .icon-social i:hover:nth-child(5) {
+    background-color: #DD4E31;
+    border: 2px solid #DD4E31;
+    color: #fff;
+}
+
+.main .description .icon-social i:hover:nth-child(6) {
+    background-color: #0072B7;
+    border: 2px solid #0072B7;
+    color: #fff;
+}
+
+.main .order {
+    position: relative;
+    margin: 30px 0;
+}
+
+.main .order::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    top: -16px;
+    background-color: #8A8A8A;
+}
+
+.main .order::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+
+    left: 0;
+    background-color: #8A8A8A;
+}
+
+.main .order span {
+    color: red;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.main .order .input {
+    margin: 26px 0;
+}
+
+.main .order .input .btn {
+    width: 124px;
+    height: 40px;
+}
+
+.main .order .input .btn-num {
+    width: 70px;
+}
+.main .order .input .btn-buy {
+    background-color: #D26E4B;
+    cursor: pointer;
+    border: 1px solid #D26E4B;
+    transition: 0.3s;
+}
+
+.main .order .input .btn-buy:hover {
+    background-color: #A8583C;
+}
+
+.main .order .inp-buy {
+    background: #f12711;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #f5af19, #f12711);  
+    background: linear-gradient(to bottom, #f5af19, #f12711); 
+    width: 349px;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+.main .order .inp-buy:hover {
+    background: #f12711;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #f5af19, #f12711);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #f5af19, #f12711); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.main .order .inp-buy h3 {
+    margin: 0;
+    color: #fff;
+}
+
+.main .order .inp-buy span {
+    font-size: 14px;
+    color: #fff;
+}
+

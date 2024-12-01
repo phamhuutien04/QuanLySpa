@@ -1,0 +1,183 @@
+﻿@model DoAnCSN.Models.USER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Interface</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            display: flex;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .info {
+            flex: 1;
+            padding: 30px;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                width: 100%;
+                padding: 12px;
+                font-size: 1rem;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                transition: border-color 0.3s ease;
+            }
+
+                .form-group input:focus,
+                .form-group select:focus,
+                .form-group textarea:focus {
+                    border-color: #5cb85c;
+                    outline: none;
+                }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #333;
+            color: #ffffff;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+            .btn:hover {
+                background-color: #5cb85c;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="info">
+            <h2>Thông tin nhận hàng</h2>
+            @using (Html.BeginForm("ThongTinNhanHang", "User", FormMethod.Post))
+            {
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Họ và tên" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Số điện thoại" required>
+                </div>
+                <div class="form-group">
+                    <select id="city" name="city" required onchange="populateDistricts()">
+                        <option value="">Chọn Thành Phố</option>
+                        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                        <option value="Hà Nội">Hà Nội</option>
+                        <!-- Add other cities here -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="district" name="district" required onchange="populateWards()">
+                        <option value="">Chọn Quận/Huyện</option>
+                        <!-- Options will be populated based on city selection -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="ward" name="ward" required>
+                        <option value="">Chọn Phường/Xã</option>
+                        <!-- Options will be populated based on district selection -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Địa chỉ cụ thể" required>
+                </div>
+                <button class="btn">Xác Nhận</button>
+            }
+        </div>
+    </div>
+    <script>
+        const vietnamLocations = {
+            "Hồ Chí Minh": {
+                "Quận 1": ["Phường Bến Nghé", "Phường Bến Thành", "Phường Cầu Kho", "Phường Cầu Ông Lãnh", "Phường Cô Giang"],
+                "Quận 3": ["Phường 1", "Phường 2", "Phường 3"],
+            },
+            "Hà Nội": {
+                "Ba Đình": ["Phường Phúc Xá", "Phường Trúc Bạch"],
+            }
+        };
+
+        function populateDistricts() {
+            const citySelect = document.getElementById("city");
+            const districtSelect = document.getElementById("district");
+            const wardSelect = document.getElementById("ward");
+
+            // Clear previous options
+            districtSelect.innerHTML = "<option value=''>Chọn Quận/Huyện</option>";
+            wardSelect.innerHTML = "<option value=''>Chọn Phường/Xã</option>";
+
+            const selectedCity = citySelect.value;
+            if (selectedCity in vietnamLocations) {
+                const districts = vietnamLocations[selectedCity];
+                for (const district in districts) {
+                    const option = document.createElement("option");
+                    option.value = district;
+                    option.textContent = district;
+                    districtSelect.appendChild(option);
+                }
+            }
+        }
+
+        function populateWards() {
+            const citySelect = document.getElementById("city");
+            const districtSelect = document.getElementById("district");
+            const wardSelect = document.getElementById("ward");
+
+            // Clear previous options
+            wardSelect.innerHTML = "<option value=''>Chọn Phường/Xã</option>";
+
+            const selectedCity = citySelect.value;
+            const selectedDistrict = districtSelect.value;
+
+            if (selectedCity in vietnamLocations && selectedDistrict in vietnamLocations[selectedCity]) {
+                const wards = vietnamLocations[selectedCity][selectedDistrict];
+                wards.forEach(ward => {
+                    const option = document.createElement("option");
+                    option.value = ward;
+                    option.textContent = ward;
+                    wardSelect.appendChild(option);
+                });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+﻿@model IEnumerable<DoAnCSN.Models.ChiTietDVKH>
+
+@{
+    ViewBag.Title = "ChiTietDichVu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+
+                <h4 class="page-title">Dịch vụ: @ViewBag.TEN_DICH_VU</h4>
+            </div>
+        </div>
+    </div>
+    
+    <h4>@TempData["Error"]</h4>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    @using (Html.BeginForm("ChiTietDichVu", "Admin"))
+                    {
+                        <div class="form-horizontal">
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label" for="simpleinput">
+                                    Nhân Viên Chăm
+                                    Sóc
+                                </label>
+                                <div class="col-lg-3">
+                                    <select class="form-control" name="MaNV" id="simpleinput">
+                                        <option value="">--Chọn Nhân Viên--</option>
+                                        @foreach (var item in ViewBag.ListNV)
+                                        {
+                                            <option value="@item.ID">@item.NAME</option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <label class="col-lg-2 col-form-label" for="simpleinput">
+                                    Chọn buổi
+                                </label>
+                                <div class="col-lg-3">
+                                    <select name="BUOI" id="SO_NGAY_THUC_HIEN" class="form-control">
+
+                                        @*<input name="SO_NGAY_THUC_HIEN" class="form-control" value="ViewBag.So_Buoi_Thuc_Hien"/>*@
+                                        @for (int i = 1; i <= ViewBag.So_Buoi_Thuc_Hien; i++)
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-horizontal">
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label" for="simpleinput">
+                                    Tên quy trình
+                                </label>
+                                <div class="col-lg-5">
+                                    <input type="text" class="form-control" name="TEN_QUY_TRINH"
+                                           placeholder="Nhập tên quy trình">
+                                </div>
+                                <label class="col-lg-2 col-form-label" for="simpleinput">
+                                    Ngày thực hiện
+                                </label>
+                                <div class="col-lg-3">
+                                    <input type="date" class="form-control" name="NGAY_THUC_HIEN">
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-horizontal">
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label" for="simpleinput" >
+                                    Thời gian
+                                    từ
+                                </label>
+                                <div class="col-lg-2">
+                                    <input type="time" class="form-control" name="THOI_GIAN_TU">
+                                </div>
+                                <label class="col-lg-2 col-form-label" for="simpleinput" >
+                                    Thời gian
+                                    đến
+                                </label>
+                                <div class="col-lg-2">
+                                    <input type="time" class="form-control" name="THOI_GIAN_DEN">
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nhân viên phục vụ</th>
+                                        <th>Tên quy trình</th>
+                                        <th>Buổi</th>
+                                        <th>Thời gian từ</th>
+                                        <th>Thời gian đến</th>
+                                        <th>Ngày thực hiện</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in ViewBag.listDV)
+                                    {
+                                        <tr>
+                                            <td></td>
+                                            <td>@item.HO_TEN</td>
+                                            <td>@item.TEN_QUY_TRINH</td>
+                                            <td>@item.Buoi</td>
+                                            <td>@item.THOI_GIAN_TU</td>
+                                            <td>@item.THOI_GIAN_DEN</td>
+                                            <td>@item.NGAY_THUC_HIEN</td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <br>
+
+                        <div class="button-list">
+                            <button type="button"
+                                    class="btn btn-danger waves-effect waves-light float-right"
+                                    data-toggle="modal" data-target="#bs-example-modal-sm">
+                                Xóa lịch
+                            </button>
+                            <button type="button"
+                                    class="btn btn-primary waves-effect waves-light float-right"
+                                    data-toggle="modal" data-target="#bs-example-modal-sm">
+                                Sửa lịch
+                            </button>
+                            <button type="submit"
+                                    class="btn btn-warning waves-effect waves-light float-right"
+                                    data-toggle="modal" data-target="#bs-example-modal-sm">
+                                Đặt lịch
+                            </button>
+                        </div>
+                    }
+
+
+
+                </div> <!-- end card-box -->
+            </div> <!-- end card-->
+        </div><!-- end col -->
+    </div>
+
+</div>
+
+

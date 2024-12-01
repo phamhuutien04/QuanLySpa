@@ -1,0 +1,131 @@
+﻿@model IEnumerable<DoAnCSN.Models.SANPHAM>
+@{
+    ViewBag.Title = "QuanLiSanPham";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+
+                <h4 class="page-title">General Elements</h4>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Tìm kiếm sản phẩm</h4>
+                    <br>
+                    <form method="get" action="@Url.Action("SuaSanPham", "Product")" class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label" for="productName">Tên sản phẩm</label>
+                            <div class="col-lg-4">
+                                <input type="text" name="productName" class="form-control" id="productName" placeholder="Nhập tên sản phẩm" />
+                            </div>
+                            <label class="col-lg-2 col-form-label" for="productType">Loại sản phẩm</label>
+                            <div class="col-lg-4">
+                                <select name="productType" id="productType" class="form-control">
+                                    <option value="">--Chọn loại sản phẩm--</option>
+                                    <option value="Chăm sóc da">Chăm sóc da</option>
+                                    <option value="Sữa rửa mặt">Sữa rửa mặt</option>
+                                    <option value="Chăm sóc tóc">Chăm sóc tóc</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label" for="priceFrom">Giá cả từ</label>
+                            <div class="col-lg-3">
+                                <input type="text" name="priceFrom" class="form-control" id="priceFrom" placeholder="Giá từ" />
+                            </div>
+                            <label class="col-lg-2 col-form-label" for="priceTo">Giá cả đến</label>
+                            <div class="col-lg-3">
+                                <input type="text" name="priceTo" class="form-control" id="priceTo" placeholder="Giá đến" />
+                            </div>
+                        </div>
+                        <div class="button-list">
+                            <a href="@Url.Action("ThemSanPham", "Admin")" class="btn btn-warning float-right" title="Thêm sản phẩm">
+                                <i class="fe-plus"></i> Thêm sản phẩm
+                            </a>
+                            <a href="@Url.Action("SuaSanPham", "Admin")" class="btn btn-primary btn-sm" title="Sửa sản phẩm">
+                                <i class="fe-edit-1"></i>
+                            </a>
+
+                            <button type="submit" class="btn btn-success float-right" title="Tìm kiếm sản phẩm">
+                                <i class="fe-search"></i> Tìm kiếm
+                            </button>
+                        </div>
+                    </form>
+                </div>  @*end card-body*@
+            </div>   @*end card*@
+        </div> @*end col*@
+    </div>
+
+
+    <table class="table mb-0">
+        <thead class="thead-light">
+            <tr>
+                <th>#</th>
+                <th></th>
+                <th>Tên sản phẩm</th>
+                <th>Mô tả</th>
+                <th>Hạn sử dụng</th>
+                <th>Giá cả</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <th scope="row">@product.ID</th>
+                    <th>
+                        <img src="@Url.Content("~/Image/SanPham/" + product.HINH_ANH)" alt="@product.TENSP" style="width: 70px; height: 70px;" />
+                    </th>
+                    <td>@product.TENSP</td>
+                    <td>@product.MOTA_SP</td>
+                    <td>@product.NAM_SAN_XUAT</td>
+                    <td>@String.Format("{0:#,##0,0}", @product.GIA)₫</td>
+                    <td>
+                        <form method="post" action="@Url.Action("Xoa", "Admin", new { id = product.ID })" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');">
+                            <button type="submit" class="btn btn-danger btn-sm" title="Xóa sản phẩm">
+                                <i class="fe-trash-2"></i>
+                            </button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="pagination">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <a href="@Url.Action("QuanLiSanPham", new { page = ViewBag.CurrentPage - 1 })">Trang trước</a>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                <span class="current-page">@i Trang hiện tại</span>   
+            }
+            else
+            {
+                <a href="@Url.Action("QuanLiSanPham", new { page = i })">@i</a>
+            }
+
+
+        }
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <a href="@Url.Action("QuanLiSanPham", new { page = ViewBag.CurrentPage + 1 })">Trang sau</a>
+        }
+    </div>
+</div>

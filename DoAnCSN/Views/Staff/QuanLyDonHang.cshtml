@@ -1,0 +1,107 @@
+﻿@model IEnumerable<DoAnCSN.Models.DDH>
+
+@{
+    ViewBag.Title = "QuanLyDonHang";
+    Layout = "~/Views/Shared/_LayoutStaff.cshtml";
+    int stt = 1;
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Thông tin toàn bộ đơn hàng</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Tìm kiếm thông tin</h4>
+                    <br />
+                    <form class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label" for="simpleinput">Tên Khách Hàng</label>
+                            <div class="col-lg-3">
+                                <input type="text" class="form-control" id="simpleinput" />
+                            </div>
+                        </div>
+                    </form>
+                    <br />
+                    <form class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label" for="simpleinput">Số điện thoại</label>
+                            <div class="col-lg-4">
+                                <input type="text" class="form-control" id="simpleinput" />
+                            </div>
+                        </div>
+                    </form>
+                    <br />
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tên Khách Hàng</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Ngày đặt</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var don in Model)
+                                {
+                                    <tr>
+                                        <td>@stt</td>
+                                        <td>@don.TenKH</td>
+                                        <td>@don.Phone</td>
+                                        <td>@don.NgayDat.ToString("dd/MM/yyyy")</td>
+                                        <td>
+                                            @using (Html.BeginForm("XuatFile", "Staff", FormMethod.Post))
+                                            {
+                                                @Html.AntiForgeryToken() <!-- Add AntiForgeryToken for security -->
+                                                @Html.Hidden("id", don.ID)
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Xuất hóa đơn">
+                                                    <i class="fe-download"></i>
+                                                </button>
+                                            }
+                                        </td>
+                                    </tr>
+                                    stt++;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <button type="button"
+                            class="btn btn-warning waves-effect waves-light float-right col-lg-2"
+                            data-toggle="modal"
+                            data-target="#bs-example-modal-sm">
+                        Tìm Kiếm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="pagination">
+    @if (ViewBag.CurrentPage > 1)
+    {
+        <a href="@Url.Action("QuanLyDonHang", new { page = ViewBag.CurrentPage - 1 })" class="btn btn-primary btn-sm">Trước</a>
+    }
+
+    @for (int i = 1; i <= ViewBag.TotalPages; i++)
+    {
+        <a href="@Url.Action("QuanLyDonHang", new { page = i })" class="btn btn-sm @((i == ViewBag.CurrentPage) ? "btn-info" : "btn-light")">
+            @i
+        </a>
+    }
+
+    @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+    {
+        <a href="@Url.Action("QuanLyDonHang", new { page = ViewBag.CurrentPage + 1 })" class="btn btn-primary btn-sm">Sau</a>
+    }
+</div>

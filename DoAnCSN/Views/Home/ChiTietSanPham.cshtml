@@ -1,0 +1,66 @@
+﻿@model DoAnCSN.Models.SANPHAM
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="img">
+                    <img src="@Url.Content("~/Image/SanPham/" + Model.HINH_ANH)" alt="@Model.TENSP">
+                </div>
+                <div class="description">
+                    <nav>
+                        <a href="@Url.Action("Index", "Home")">Trang chủ</a>
+                        <span>/</span>
+                        <a href="@Url.Action("Product", "Home")">Sản Phẩm</a>
+                    </nav>
+                    <h1>
+
+                        @Model.TENSP
+                    </h1>
+
+                    <div class="order">
+                        <span>@String.Format("{0:#,##0,0}", Model.GIA)₫</span>
+                        <p>
+                            @Model.MOTA_SP
+                        </p>
+                        <!-- <input type="button" value="-"> -->
+                        <div class="input">
+                            <input type="button" class="btn btn-buy" value="Thêm vào giỏ hàng" onclick="location.href='@Url.Action("ThemGioHang","GioHang", new { ms = Model.ID, url = Request.Url.ToString() })'">
+                        </div>
+
+
+                        <div class="input inp-buy">
+
+                            <h3>MUA NGAY</h3>
+                            <span>Gọi điện xác nhận và giao hàng tận nơi</span>
+                        </div>
+
+
+                    </div>
+
+                    <span class="product">
+                        Danh mục: Mỹ phẩm
+                    </span>
+
+                    <div class="icon-social">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-regular fa-envelope"></i>
+                        <i class="fa-brands fa-pinterest"></i>
+                        <i class="fa-brands fa-google-plus-g"></i>
+                        <i class="fa-brands fa-linkedin"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+

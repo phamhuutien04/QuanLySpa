@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Doanh Thu Theo Tháng";
+
+    // Lấy dữ liệu từ ViewBag
+    var labels = ViewBag.Labels;
+    var data = ViewBag.Data;
+}
+
+<h2>Doanh Thu Theo Tháng</h2>
+
+<canvas id="revenueChart" width="400" height="200"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const labels = @Html.Raw(Json.Encode(labels));
+const data = @Html.Raw(Json.Encode(data));
+
+    const ctx = document.getElementById('revenueChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Tổng Doanh Thu (VND)',
+                data: data,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Doanh Thu (VND)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Tháng/Năm'
+                    }
+                }
+            }
+        }
+    });
+</script>

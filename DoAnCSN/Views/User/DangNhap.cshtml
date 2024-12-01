@@ -1,0 +1,44 @@
+﻿@model DoAnCSN.Models.AccountCustomer
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng Nhập</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/login.css")?v=@DateTime.Now.Ticks">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Đăng Nhập</h1>
+        <h4>@ViewBag.ThongBao</h4>
+        <h4>@TempData["ThongBao"]</h4>
+        <br>
+        @using (Html.BeginForm("DangNhap", "User", FormMethod.Post))
+        {
+            <div>
+                @Html.TextBoxFor(m => m.USER_NAME, new { @placeholder = "Tài khoản" })
+                @Html.ValidationMessageFor(m => m.USER_NAME)
+            </div>
+            <div>
+                @Html.PasswordFor(m => m.PASSWORD, new { @placeholder = "Mật khẩu" })
+                @Html.ValidationMessageFor(m => m.PASSWORD)
+            </div>
+            <p class="recover">
+                <a href="#">Khôi phục mật khẩu</a>
+            </p>
+            <button type="submit">Login</button>
+        }
+        <div class="icons">
+            <i class="fab fa-google">&nbsp;&nbsp;Đăng nhập bằng tài khoản google</i>
+        </div>
+        <div class="not-member">
+            Bạn chưa có tài khoản? <a href="@Url.Action("DangKy", "User")">Đăng kí ngay</a>
+        </div>
+    </div>
+</body>
+</html>

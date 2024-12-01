@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- plugin css -->
+    <!-- <link href="assets\libs\datatables\dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/buttons.bootstrap4.min.css")?v=@DateTime.Now.Ticks">
+    <!-- <link href="assets\libs\datatables\responsive.bootstrap4.min.css" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/libs/datatables/responsive.bootstrap4.min.css")?v=@DateTime.Now.Ticks">
+    @*<link rel="stylesheet" href="~/Content/libs/datatables/responsive.bootstrap4.min.css">*@
+    <!-- <link href="assets\libs\datatables\buttons.bootstrap4.min.css" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/libs/datatables/buttons.bootstrap4.min.css")?v=@DateTime.Now.Ticks">
+    <!-- <link href="assets\libs\datatables\select.bootstrap4.min.css" rel="stylesheet" type="text/css">  -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/libs/datatables/select.bootstrap4.min.css")?v=@DateTime.Now.Ticks">
+    <!-- App css -->
+    <!-- <link href="assets\css\bootstrap.min.css" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/bootstrap.min.css")?v=@DateTime.Now.Ticks">
+
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/icons.min.css")?v=@DateTime.Now.Ticks">
+    <!-- <link href="assets\css\app.min.css" rel="stylesheet" type="text/css"> -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/app.min.css")?v=@DateTime.Now.Ticks">
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Topbar Start -->
+        @Html.Action("Navbar_Custom", "Staff")
+        <!-- end Topbar -->
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="left-side-menu">
+            <div class="slimscroll-menu">
+                <!-- LOGO -->
+                <a href="index.html" class="logo text-center mb-4">
+                    <span class="logo-lg">
+                        <img src="~\Content\images\logo-dark.png" alt="" height="20" />
+                    </span>
+                    <span class="logo-sm">
+                        <img src="~\Content\images\logo-sm.png" alt="" height="24" />
+                    </span>
+                </a>
+                <!--- Sidemenu -->
+                @Html.Action("Sidebar_Menu", "Staff")
+                <!-- End Sidebar -->
+
+                <div class="clearfix"></div>
+            </div>
+            <!-- Sidebar -left -->
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+
+        <div class="content-page">
+            <div class="content">
+
+                <!-- Start Content-->
+                @RenderBody()
+            </div> <!-- content -->
+            <!-- Footer Start -->
+            @Html.Action("Footer", "Staff")
+            
+            <!-- end Footer -->
+        </div>
+    </div>
+
+    <!-- Vendor js -->
+    <script src="~/Content/js/vendor.min.js"></script>
+    <!-- Chart JS -->
+    <script src="~/Content/libs/chart-js/Chart.bundle.min.js"></script>
+    <!-- Sparkline charts -->
+    <!-- <script src="assets\libs\jquery-sparkline\jquery.sparkline.min.js"></script> -->
+    <script src="~/Content/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <!-- Dashboard js -->
+    <!-- <script src="assets\js\pages\dashboard.init.js"></script> -->
+    <script src="~/Content/js/pages/dashboard.init.js"></script>
+    <!-- App js -->
+    <!-- <script src="assets\js\app.min.js"></script> -->
+    <script src="~/Content/js/app.min.js"></script>
+</body>
+</html>

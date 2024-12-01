@@ -1,0 +1,89 @@
+﻿@model DoAnCSN.Models.CUSTOMER
+
+@{
+    ViewBag.Title = "DangKiTuVan";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+
+                <h4 class="page-title">Đăng kí tư vấn</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">Tìm kiếm thông tin</h4>
+                    @using (Html.BeginForm("DangKiTuVan", "Admin"))
+                    {
+                        <br>
+                        <div class="form-horizontal">
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label" for="simpleinput">
+                                    Tên Khách
+                                    Hàng
+                                </label>
+                                <div class="col-lg-3">
+                                    <input type="text" name="TenKH" class="form-control" id="simpleinput">
+                                </div>
+                                <label class="col-lg-2 col-form-label" for="example-date">Số điện thoại</label>
+                                <div class="col-lg-3">
+                                    <input class="form-control" id="example-date" type="text" name="SDT">
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-horizontal">
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label" for="simpleinput">
+                                    Ngày sinh
+                                </label>
+                                <div class="col-lg-3">
+                                    <input type="date" name="NgaySinh" class="form-control" id="simpleinput">
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="form-horizontal">
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label" for="example-time">
+                                    Thời gian tư vấn
+                                </label>
+                                <div class="col-lg-3">
+                                    <input class="form-control" id="example-time" type="time" name="GioTuVan">
+                                </div>
+                                <label class="col-lg-2 col-form-label" for="example-date">
+                                    Ngày tư
+                                    vấn
+                                </label>
+                                <div class="col-lg-3">
+                                    <input class="form-control" id="example-date" type="date" name="NgayTuVan">
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+
+                        <button type="submit" class="btn btn-info waves-effect waves-light float-right"
+                                data-toggle="modal" data-target="#centermodal">
+                            Đặt lịch
+                        </button>
+                    }
+
+                </div> <!-- end card-box -->
+            </div> <!-- end card-->
+        </div><!-- end col -->
+    </div>
+
+</div> <!-- container-fluid -->

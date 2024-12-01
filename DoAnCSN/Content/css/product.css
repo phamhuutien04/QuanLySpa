@@ -1,0 +1,168 @@
+.button {
+    width: 130px;
+    height: 38px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+
+
+.prev_links_params {
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.prev_links_params a {
+    font-size: 18px !important;
+    all: unset;
+    text-transform: uppercase;
+}
+
+.prev_links_params section:nth-child(2) {
+    display: flex;
+    gap: 15px;
+    text-wrap: nowrap;
+    align-items: center;
+}
+
+.prev_links_params section:nth-child(2) select {
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    padding: 0 .75em;
+    height: 2.507em;
+    font-size: .97em;
+    border-radius: 0;
+    max-width: 100%;
+    width: 100%;
+    vertical-align: middle;
+    background-color: #fff;
+    color: #333;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: color .3s, border .3s, background .3s, opacity .3s;
+}
+
+main .content {
+    display: flex;
+    padding: 10px 50px;
+}
+
+main .content .content_left {
+    min-width: 30%;
+}
+
+main .content .content_left .lists {
+    width: 100%;
+}
+
+main .content .content_left .lists ul {
+    list-style: none;
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+main .content .content_left .lists ul li {
+    display: flex;
+    gap: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #3333330f;
+}
+
+main .content .content_left .lists ul li img {
+    border-radius: 5px;
+    border: 2px solid #eaeaea;
+    box-shadow: rgb(126 126 126 / 13%) 0px 1.6px 3.6px 0px !important;
+}
+
+main .content .content_right ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    list-style: none;
+}
+
+main .content .content_right ul li {
+    border-radius: 6px;
+    box-shadow: 2px 2px 5px rgb(182 182 182 / 50%);
+}
+
+main .content .content_right ul li .poster {
+    width: 100%;
+}
+
+main .content .content_right ul li img {
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+
+}
+
+main .content .content_right ul li .des {
+    padding: 0 10px;
+}
+
+main .content .content_right ul li .des h3 {
+    font-weight: 400;
+    margin: 10px 0;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+main .content .content_right ul li .des p s {
+    color: #333
+}
+
+main .content .content_right .des .button-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+}
+
+main .content .content_right .des .button-list .button:first-child {
+    background-color: #15672CFF;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+main .content .content_right .des .button-list .button:last-child {
+    background-color: #15672CFF;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+main .content .content_right .des .button-list .button:hover {
+    background-color: #518E62;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination a, .pagination span {
+    margin: 0 5px;
+    padding: 8px 12px; /* Tăng khoảng cách để dễ nhấn */
+    border: 1px solid #007bff; /* Màu viền cho các ô */
+    border-radius: 4px; /* Đường viền bo tròn */
+    color: #007bff; /* Màu chữ cho các liên kết */
+    text-decoration: none; /* Bỏ gạch chân */
+    transition: background-color 0.3s, color 0.3s; /* Hiệu ứng chuyển tiếp */
+}
+
+.pagination span.current-page {
+    background-color: #007bff; /* Nền màu cho trang hiện tại */
+    color: white; /* Màu chữ cho trang hiện tại */
+    border: 1px solid #007bff; /* Viền giống với màu nền */
+}
+
+.pagination a:hover {
+    background-color: #007bff; /* Nền khi hover */
+    color: white; /* Màu chữ khi hover */
+}

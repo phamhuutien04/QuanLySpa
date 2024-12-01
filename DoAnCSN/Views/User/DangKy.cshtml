@@ -1,0 +1,59 @@
+﻿@model DoAnCSN.Models.AccountCustomer
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký</title>
+    <link rel="stylesheet" href="@Url.Content("~/Content/css/sig.css")?v=@DateTime.Now.Ticks">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<body>
+    <h4>@ViewBag.ThongBao</h4>
+    @*<h4>@TempData["ThongBao"]</h4>*@
+<div class="wrapper">
+    <h1>Đăng Ký</h1>
+    <br>
+    @using (Html.BeginForm("DangKy", "User", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <div>
+            @*@Html.TextBoxFor(m => m.HO_TEN, new { @placeholder = "Họ và Tên", required = "required" })
+            @Html.ValidationMessageFor(m => m.HO_TEN)*@
+            <input type="text" name="HO_TEN" placeholder="Họ và Tên" required />
+        </div>
+        <div>
+            @*@Html.TextBoxFor(m => m.USER_NAME, new { @placeholder = "Tên tài khoản (viết liền không dấu)", required = "required" })
+        @Html.ValidationMessageFor(m => m.USER_NAME)*@
+            <input type="text" name="USER_NAME" placeholder="Tên tài khoản (viết liền không dấu)" required />
+        </div>
+        <div>
+            <input type="date" name="NGAY_SINH" required/>
+            @*@Html.ValidationMessageFor(m => m.NGAY_SINH)*@
+        </div>
+        <div class="email-group">
+            @*@Html.TextBoxFor(m => m.EMAIL, new { @placeholder = "Email", required = "required", type = "email" })*@
+            <input type="email" name="EMAIL" placeholder="Email" required />
+        </div>
+
+        <div>
+            @*@Html.TextBoxFor(m => m.PHONE_NUMBER, new { @placeholder = "Số điện thoại", required = "required" })
+        @Html.ValidationMessageFor(m => m.PHONE_NUMBER)*@
+            <input type="text" name="PHONE_NUMBER" placeholder="Số điện thoại" required />
+        </div>
+        <button type="submit">Đăng Ký</button>
+    }
+    <div class="icons">
+        <i class="fab fa-google">&nbsp;&nbsp;Đăng nhập bằng tài khoản google</i>
+    </div>
+    <div class="not-member">
+        Đã có tài khoản? <a href="@Url.Action("DangNhap", "User")">Đăng nhập ngay</a>
+    </div>
+</div>
+</body>
+</html>

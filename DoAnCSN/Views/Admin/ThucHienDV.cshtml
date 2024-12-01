@@ -1,0 +1,86 @@
+﻿
+
+
+@{
+    ViewBag.Title = "ThucHienDV";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+
+                <h4 class="page-title">Danh sách Khách Hàng đăng kí dịch vụ</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form class="form-horizontal" action="~/Admin/ThucHienDV" method="get" role="search">
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label" for="simpleinput">
+                                Tên Khách
+                                Hàng
+                            </label>
+                            <div class="col-lg-3">
+                                <input type="text" class="form-control" id="simpleinput" name="search">
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="table-responsive">
+                            <table class="table mb-0">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Tên Khách Hàng</th>
+                                        <th>Ngày sinh</th>
+                                        <th>Số điện thoại</th>
+                                        <th>Số lượng dịch vụ đăng kí</th>
+                                        <th>Còn lại</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in ViewBag.listDVKH)
+                                    {
+                                        <tr>
+                                            <td></td>
+                                            <td>@item.HO_TEN</td>
+                                            <td>@item.NGAY_SINH</td>
+                                            <td>@item.PHONE_NUMBER</td>
+                                            <td>@item.SoLuongDV</td>
+                                            <td>@item.ConLai</td>
+                                            <td>
+                                                <a href="@Url.Action("ChiTietDichVuKH", "Admin", new {MaKH = item.MaKH})" class="btn btn-success btn-sm">
+                                                    <i class="fe-align-justify"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <br>
+
+                        <button type="submit" class="btn btn-warning waves-effect waves-light float-right">   
+                            Tìm Kiếm
+                        </button>
+                    </form>
+
+                </div> <!-- end card-box -->
+            </div> <!-- end card-->
+        </div><!-- end col -->
+    </div>
+
+</div> <!-- container-fluid -->

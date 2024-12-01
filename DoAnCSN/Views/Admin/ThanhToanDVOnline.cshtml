@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "ThanhToanDVOnline";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .qr-code {
+        width: 30%;
+        margin: 0 auto;
+        display: block;
+    }
+
+    p {
+        text-align: center;
+    }
+</style>
+<div class="qr-section">
+    <img src="https://qr.ecaptcha.vn/api/generate/Mb/0968003420/Nguyen%20Chi%20Cuong?amount=@Url.Encode(ViewBag.TongTien.ToString())&memo=@Url.Encode(ViewBag.SoHoaDon)&is_mask=0&bg=7" 
+         alt="Mã QR" 
+         class="qr-code">
+    <p>Nội Dung chuyển khoản: @ViewBag.SoHoaDon</p>
+    @using (Html.BeginForm("", "", FormMethod.Post))
+    {
+        <input type="text" name="phuongThucThanhToan" value="online" hidden />
+        <input type="text" name="content" value="@ViewBag.SoHoaDon" hidden />
+        <input type="text" name="amount" value="@ViewBag.TongTien" hidden />
+        <button id="btnConfirmPayment" type="submit" hidden>Xác nhận thanh toán</button>
+    }
+</div>
+

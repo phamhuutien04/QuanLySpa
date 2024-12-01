@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLSpaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHITIETDATHANG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="MAKH" Type="Int32" />
+    <Property Name="MASP" Type="Int32" Nullable="false" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <Property Name="DONGIA" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="SANPHAM" Relationship="Self.FK_CHITIETDATHANG_SANPHAM2" FromRole="CHITIETDATHANG" ToRole="SANPHAM" />
+    <NavigationProperty Name="USER" Relationship="Self.FK_CHITIETDATHANG_USERS1" FromRole="CHITIETDATHANG" ToRole="USERS" />
+    <Property Name="IDDonHang" Type="Int32" />
+  </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HO_TEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PHONE_NUMBER" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NGAY_TU_VAN" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="GIO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DICHVU">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TEN_DICH_VU" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LOAI_DICH_VU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MOTA_DICH_VU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="GIA_DICH_VU" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="HINH_ANH" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DonDatHang">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="DaThanhToan" Type="Boolean" />
+    <Property Name="TinhTrangGiaoHang" Type="Int32" />
+    <Property Name="NgayDat" Type="DateTime" Precision="0" />
+    <Property Name="NgayGiao" Type="DateTime" Precision="0" />
+    <Property Name="MAKH" Type="Int32" />
+    <NavigationProperty Name="USER" Relationship="QLSpaModel.FK_DonDatHang_USERS" FromRole="DonDatHang" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="ROLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CHUCVU" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENSP" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LOAISP" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MOTA_SP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="GIA" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="NAM_SAN_XUAT" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="NAM_HET_HAN" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="HINH_ANH" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="SO_LUONG" Type="Int32" Nullable="false" />
+    <Property Name="STATUS" Type="Int32" />
+    <NavigationProperty Name="CHITIETDATHANGs" Relationship="Self.FK_CHITIETDATHANG_SANPHAM2" FromRole="SANPHAM" ToRole="CHITIETDATHANG" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PHONE_NUMBER" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="0" />
+    <Property Name="ChucVu" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Code" Type="Int32" />
+    <Property Name="STATUS" Type="Int32" />
+    <NavigationProperty Name="CHITIETDATHANGs" Relationship="Self.FK_CHITIETDATHANG_USERS1" FromRole="USERS" ToRole="CHITIETDATHANG" />
+    <NavigationProperty Name="DonDatHangs" Relationship="QLSpaModel.FK_DonDatHang_USERS" FromRole="USER" ToRole="DonDatHang" />
+  </EntityType>
+  <Association Name="FK_CHITIETDATHANG_SANPHAM2">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+    <End Role="CHITIETDATHANG" Type="Self.CHITIETDATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CHITIETDATHANG">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETDATHANG_USERS1">
+    <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+    <End Role="CHITIETDATHANG" Type="Self.CHITIETDATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CHITIETDATHANG">
+        <PropertyRef Name="MAKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLSpaEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHITIETDATHANGs" EntityType="Self.CHITIETDATHANG" />
+    <EntitySet Name="CUSTOMERs" EntityType="Self.CUSTOMER" />
+    <EntitySet Name="DICHVUs" EntityType="Self.DICHVU" />
+    <EntitySet Name="DonDatHangs" EntityType="Self.DonDatHang" />
+    <EntitySet Name="ROLEs" EntityType="Self.ROLE" />
+    <EntitySet Name="SANPHAMs" EntityType="Self.SANPHAM" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="USERS" EntityType="Self.USER" />
+    <AssociationSet Name="FK_CHITIETDATHANG_SANPHAM2" Association="Self.FK_CHITIETDATHANG_SANPHAM2">
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+      <End Role="CHITIETDATHANG" EntitySet="CHITIETDATHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETDATHANG_USERS1" Association="Self.FK_CHITIETDATHANG_USERS1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="CHITIETDATHANG" EntitySet="CHITIETDATHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DonDatHang_USERS" Association="QLSpaModel.FK_DonDatHang_USERS">
+      <End Role="USER" EntitySet="USERS" />
+      <End Role="DonDatHang" EntitySet="DonDatHangs" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_DonDatHang_USERS">
+    <End Type="QLSpaModel.USER" Role="USER" Multiplicity="0..1" />
+    <End Type="QLSpaModel.DonDatHang" Role="DonDatHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DonDatHang">
+        <PropertyRef Name="MAKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

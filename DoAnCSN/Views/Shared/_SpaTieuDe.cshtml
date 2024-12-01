@@ -1,0 +1,19 @@
+﻿@{
+    Layout = null;
+}
+
+<div class="lists">
+    <ul>
+        @foreach (var article in Model)
+        {
+            <li>
+                <div class="poster">
+                    <img src="~/Image/@article.photo" alt="@article.tieuDe" width="50">
+                </div>
+                <div class="des">
+                    <span>@article.tieuDe</span>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

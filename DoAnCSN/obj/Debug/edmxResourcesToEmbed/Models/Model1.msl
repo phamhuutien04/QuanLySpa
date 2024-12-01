@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLSpaModelStoreContainer" CdmEntityContainer="QLSpaEntities2">
+    <EntitySetMapping Name="CHITIETDATHANGs">
+      <EntityTypeMapping TypeName="QLSpaModel.CHITIETDATHANG">
+        <MappingFragment StoreEntitySet="CHITIETDATHANG">
+          <ScalarProperty Name="IDDonHang" ColumnName="IDDonHang" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+          <ScalarProperty Name="MASP" ColumnName="MASP" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="DONGIA" ColumnName="DONGIA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUSTOMERs">
+      <EntityTypeMapping TypeName="QLSpaModel.CUSTOMER">
+        <MappingFragment StoreEntitySet="CUSTOMER">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HO_TEN" ColumnName="HO_TEN" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="NGAY_TU_VAN" ColumnName="NGAY_TU_VAN" />
+          <ScalarProperty Name="GIO" ColumnName="GIO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DICHVUs">
+      <EntityTypeMapping TypeName="QLSpaModel.DICHVU">
+        <MappingFragment StoreEntitySet="DICHVU">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TEN_DICH_VU" ColumnName="TEN_DICH_VU" />
+          <ScalarProperty Name="LOAI_DICH_VU" ColumnName="LOAI_DICH_VU" />
+          <ScalarProperty Name="MOTA_DICH_VU" ColumnName="MOTA_DICH_VU" />
+          <ScalarProperty Name="GIA_DICH_VU" ColumnName="GIA_DICH_VU" />
+          <ScalarProperty Name="HINH_ANH" ColumnName="HINH_ANH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonDatHangs">
+      <EntityTypeMapping TypeName="QLSpaModel.DonDatHang">
+        <MappingFragment StoreEntitySet="DonDatHang">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DaThanhToan" ColumnName="DaThanhToan" />
+          <ScalarProperty Name="TinhTrangGiaoHang" ColumnName="TinhTrangGiaoHang" />
+          <ScalarProperty Name="NgayDat" ColumnName="NgayDat" />
+          <ScalarProperty Name="NgayGiao" ColumnName="NgayGiao" />
+          <ScalarProperty Name="MAKH" ColumnName="MAKH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLEs">
+      <EntityTypeMapping TypeName="QLSpaModel.ROLE">
+        <MappingFragment StoreEntitySet="ROLE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="CHUCVU" ColumnName="CHUCVU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SANPHAMs">
+      <EntityTypeMapping TypeName="QLSpaModel.SANPHAM">
+        <MappingFragment StoreEntitySet="SANPHAM">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TENSP" ColumnName="TENSP" />
+          <ScalarProperty Name="LOAISP" ColumnName="LOAISP" />
+          <ScalarProperty Name="MOTA_SP" ColumnName="MOTA_SP" />
+          <ScalarProperty Name="GIA" ColumnName="GIA" />
+          <ScalarProperty Name="NAM_SAN_XUAT" ColumnName="NAM_SAN_XUAT" />
+          <ScalarProperty Name="NAM_HET_HAN" ColumnName="NAM_HET_HAN" />
+          <ScalarProperty Name="HINH_ANH" ColumnName="HINH_ANH" />
+          <ScalarProperty Name="SO_LUONG" ColumnName="SO_LUONG" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="QLSpaModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERS">
+      <EntityTypeMapping TypeName="QLSpaModel.USER">
+        <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

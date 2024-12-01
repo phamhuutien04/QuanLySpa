@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLSpaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AccountCustomer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="100" />
+    <Property Name="NGAY_SINH" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="USER_NAME" Type="varchar" MaxLength="100" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="255" />
+    <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="12" />
+    <Property Name="STATUS" Type="int" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="255" />
+    <Property Name="DIACHI" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="AssignmentCustomer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaNV" Type="int" Nullable="false" />
+    <Property Name="MaKH" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CHITIETDATHANG">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDDonHang" Type="int" />
+    <Property Name="MAKH" Type="int" />
+    <Property Name="MASP" Type="int" Nullable="false" />
+    <Property Name="SOLUONG" Type="int" />
+    <Property Name="DONGIA" Type="money" />
+  </EntityType>
+  <EntityType Name="ChiTietDVKH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaDV" Type="int" Nullable="false" />
+    <Property Name="MaKH" Type="int" Nullable="false" />
+    <Property Name="MaNV" Type="int" Nullable="false" />
+    <Property Name="TenQuyTrinh" Type="nvarchar" MaxLength="300" />
+    <Property Name="Buoi" Type="int" Nullable="false" />
+    <Property Name="ThoiGianTu" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ThoiGianDen" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="NgayThucHien" Type="varchar" MaxLength="20" />
+    <Property Name="Checked" Type="int" Nullable="false" />
+    <Property Name="HINH_ANH" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="CUSTOMER">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HO_TEN" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="NGAY_SINH" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="12" />
+    <Property Name="NGAY_TU_VAN" Type="varchar" MaxLength="20" />
+    <Property Name="GIO" Type="nvarchar" MaxLength="20" />
+    <Property Name="MaTT" Type="int" Nullable="false" />
+    <Property Name="MaTK" Type="int" />
+  </EntityType>
+  <EntityType Name="DanhSachDVKH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaDV" Type="int" Nullable="false" />
+    <Property Name="MaKH" Type="int" Nullable="false" />
+    <Property Name="SoNgayThucHien" Type="int" Nullable="false" />
+    <Property Name="TongTien" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="SoNgayConLai" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="DaThanhToan" Type="int" Nullable="false" />
+    <Property Name="THANHTOANBANG" Type="int" />
+  </EntityType>
+  <EntityType Name="DICHVU">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TEN_DICH_VU" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LOAI_DICH_VU" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MOTA_DICH_VU" Type="nvarchar" MaxLength="255" />
+    <Property Name="GIA_DICH_VU" Type="money" Nullable="false" />
+    <Property Name="SO_NGAY_THUC_HIEN" Type="int" Nullable="false" />
+    <Property Name="HINH_ANH" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="DonDatHang">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DaThanhToan" Type="bit" />
+    <Property Name="TinhTrangGiaoHang" Type="int" />
+    <Property Name="NgayDat" Type="smalldatetime" />
+    <Property Name="NgayGiao" Type="smalldatetime" />
+    <Property Name="MAKH" Type="int" />
+    <Property Name="SoHoaDon" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="ROLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CODE" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENSP" Type="nvarchar" MaxLength="75" Nullable="false" />
+    <Property Name="LOAISP" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="MOTA_SP" Type="nvarchar" MaxLength="255" />
+    <Property Name="GIA" Type="money" Nullable="false" />
+    <Property Name="NAM_SAN_XUAT" Type="date" Nullable="false" />
+    <Property Name="NAM_HET_HAN" Type="date" Nullable="false" />
+    <Property Name="HINH_ANH" Type="nchar" MaxLength="100" />
+    <Property Name="SO_LUONG" Type="int" Nullable="false" />
+    <Property Name="STATUS" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TRANGTHAI">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten_Trang_Thai" Type="nvarchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USER_ROLE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="USER_ID" Type="int" Nullable="false" />
+    <Property Name="ROLE_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NAME" Type="nvarchar" MaxLength="50" />
+    <Property Name="USER_NAME" Type="varchar" MaxLength="50" />
+    <Property Name="PASSWORD" Type="varchar(max)" />
+    <Property Name="PHONE_NUMBER" Type="varchar" MaxLength="12" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgaySinh" Type="varchar" MaxLength="20" />
+    <Property Name="STATUS" Type="int" />
+  </EntityType>
+  <Association Name="FK__Assignment__MaKH__5441852A">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+    <End Role="AssignmentCustomer" Type="Self.AssignmentCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AssignmentCustomer">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Assignment__MaNV__534D60F1">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="AssignmentCustomer" Type="Self.AssignmentCustomer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AssignmentCustomer">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietDVK__MaDV__4E88ABD4">
+    <End Role="DICHVU" Type="Self.DICHVU" Multiplicity="1" />
+    <End Role="ChiTietDVKH" Type="Self.ChiTietDVKH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DICHVU">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ChiTietDVKH">
+        <PropertyRef Name="MaDV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietDVK__MaKH__4F7CD00D">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+    <End Role="ChiTietDVKH" Type="Self.ChiTietDVKH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ChiTietDVKH">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietDVK__MaNV__5070F446">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="ChiTietDVKH" Type="Self.ChiTietDVKH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ChiTietDVKH">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CUSTOMER__MaTK__47DBAE45">
+    <End Role="AccountCustomer" Type="Self.AccountCustomer" Multiplicity="0..1" />
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccountCustomer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CUSTOMER">
+        <PropertyRef Name="MaTK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CUSTOMER__MaTT__46E78A0C">
+    <End Role="TRANGTHAI" Type="Self.TRANGTHAI" Multiplicity="1" />
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TRANGTHAI">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CUSTOMER">
+        <PropertyRef Name="MaTT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DanhSachDV__MaDV__4AB81AF0">
+    <End Role="DICHVU" Type="Self.DICHVU" Multiplicity="1" />
+    <End Role="DanhSachDVKH" Type="Self.DanhSachDVKH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DICHVU">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DanhSachDVKH">
+        <PropertyRef Name="MaDV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DanhSachDV__MaKH__4BAC3F29">
+    <End Role="CUSTOMER" Type="Self.CUSTOMER" Multiplicity="1" />
+    <End Role="DanhSachDVKH" Type="Self.DanhSachDVKH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CUSTOMER">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DanhSachDVKH">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USER_ROLE__ROLE___3C69FB99">
+    <End Role="ROLE" Type="Self.ROLE" Multiplicity="1" />
+    <End Role="USER_ROLE" Type="Self.USER_ROLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_ROLE">
+        <PropertyRef Name="ROLE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USER_ROLE__USER___3B75D760">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1" />
+    <End Role="USER_ROLE" Type="Self.USER_ROLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_ROLE">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ddh">
+    <End Role="DonDatHang" Type="Self.DonDatHang" Multiplicity="0..1" />
+    <End Role="CHITIETDATHANG" Type="Self.CHITIETDATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonDatHang">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CHITIETDATHANG">
+        <PropertyRef Name="IDDonHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sp">
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+    <End Role="CHITIETDATHANG" Type="Self.CHITIETDATHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CHITIETDATHANG">
+        <PropertyRef Name="MASP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLSpaModelStoreContainer">
+    <EntitySet Name="AccountCustomer" EntityType="Self.AccountCustomer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssignmentCustomer" EntityType="Self.AssignmentCustomer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHITIETDATHANG" EntityType="Self.CHITIETDATHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiTietDVKH" EntityType="Self.ChiTietDVKH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CUSTOMER" EntityType="Self.CUSTOMER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DanhSachDVKH" EntityType="Self.DanhSachDVKH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DICHVU" EntityType="Self.DICHVU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonDatHang" EntityType="Self.DonDatHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROLE" EntityType="Self.ROLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRANGTHAI" EntityType="Self.TRANGTHAI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USER_ROLE" EntityType="Self.USER_ROLE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Assignment__MaKH__5441852A" Association="Self.FK__Assignment__MaKH__5441852A">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="AssignmentCustomer" EntitySet="AssignmentCustomer" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Assignment__MaNV__534D60F1" Association="Self.FK__Assignment__MaNV__534D60F1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="AssignmentCustomer" EntitySet="AssignmentCustomer" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietDVK__MaDV__4E88ABD4" Association="Self.FK__ChiTietDVK__MaDV__4E88ABD4">
+      <End Role="DICHVU" EntitySet="DICHVU" />
+      <End Role="ChiTietDVKH" EntitySet="ChiTietDVKH" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietDVK__MaKH__4F7CD00D" Association="Self.FK__ChiTietDVK__MaKH__4F7CD00D">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="ChiTietDVKH" EntitySet="ChiTietDVKH" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietDVK__MaNV__5070F446" Association="Self.FK__ChiTietDVK__MaNV__5070F446">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ChiTietDVKH" EntitySet="ChiTietDVKH" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CUSTOMER__MaTK__47DBAE45" Association="Self.FK__CUSTOMER__MaTK__47DBAE45">
+      <End Role="AccountCustomer" EntitySet="AccountCustomer" />
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CUSTOMER__MaTT__46E78A0C" Association="Self.FK__CUSTOMER__MaTT__46E78A0C">
+      <End Role="TRANGTHAI" EntitySet="TRANGTHAI" />
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DanhSachDV__MaDV__4AB81AF0" Association="Self.FK__DanhSachDV__MaDV__4AB81AF0">
+      <End Role="DICHVU" EntitySet="DICHVU" />
+      <End Role="DanhSachDVKH" EntitySet="DanhSachDVKH" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DanhSachDV__MaKH__4BAC3F29" Association="Self.FK__DanhSachDV__MaKH__4BAC3F29">
+      <End Role="CUSTOMER" EntitySet="CUSTOMER" />
+      <End Role="DanhSachDVKH" EntitySet="DanhSachDVKH" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USER_ROLE__ROLE___3C69FB99" Association="Self.FK__USER_ROLE__ROLE___3C69FB99">
+      <End Role="ROLE" EntitySet="ROLE" />
+      <End Role="USER_ROLE" EntitySet="USER_ROLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USER_ROLE__USER___3B75D760" Association="Self.FK__USER_ROLE__USER___3B75D760">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="USER_ROLE" EntitySet="USER_ROLE" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ddh" Association="Self.fk_ddh">
+      <End Role="DonDatHang" EntitySet="DonDatHang" />
+      <End Role="CHITIETDATHANG" EntitySet="CHITIETDATHANG" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sp" Association="Self.fk_sp">
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+      <End Role="CHITIETDATHANG" EntitySet="CHITIETDATHANG" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,98 @@
+﻿
+<header class="header">
+    <div class="navbar">
+        <div class="part1">
+            <img src="https://khangviet.net/media/7UF7HqhXPfhDq1r_KDtxnIHH7ABD4QKl4StzLS8CrOQlr4Ea4PI_beniCvt3aHlH.png">
+        </div>
+        <div class="part2">
+            <div class="top">
+                <div class="search">
+                    <form action="search">
+                        <input type="text" placeholder="Tìm kiếm...">
+                        <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="login">
+                    @if (Session["NAME"] != null)
+                    {
+                        <span>Xin chào, @Session["NAME"]</span>
+                        <a href="@Url.Action("Profile", "User", new { MaKH = Session["MaKH"] })">
+                            <i class="fa-solid fa-user" style="color: #0F7D5E";></i>
+                        </a>
+                        <a href="@Url.Action("DangXuat", "User")" class="logout">Đăng xuất</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("DangNhap", "User")" class="sign_in">Đăng nhập</a>
+                        <a href="@Url.Action("DangKy", "User")" class="sign_up">Đăng ký</a>
+                    }
+                </div>
+
+
+
+                @Html.Action("GioHangPartial", "GioHang")
+
+            </div>
+        </div>
+    </div>
+    <div class="main stap-main">
+        <ul class="menu">
+            <li class="item">
+                <a href="@Url.Action("TrangChu", "Home")">
+                    <i class="fa-solid fa-house"></i>Trang chủ
+                </a>
+            </li>
+            <li class="item">
+                <a href="#">
+                    Dịch vụ tóc <i class="fa-solid fa-chevron-down"></i>
+                </a>
+                <ul class="subnav">
+                    <li><a href="">Thiết kế tóc</a></li>
+                    <li><a href="">Uốn phục hồi</a></li>
+                    <li><a href="">Phục hồi chăm sóc tóc</a></li>
+                </ul>
+            </li>
+
+            <li class="item">
+                <a href="#">
+                    Trẻ hóa da <i class="fa-solid fa-chevron-down"></i>
+                </a>
+                <ul class="subnav">
+                    <li><a href="">Trẻ hóa làn da bằng vàng 24K</a></li>
+                    <li><a href="">Nâng cơ mặt Vline Sokin</a></li>
+                    <li><a href="">Phục hồi da chống oxi hóa da</a></li>
+                    <li><a href="">Phục hồi tế bào gốc</a></li>
+                    <li><a href="">Thải độc tố da</a></li>
+                </ul>
+            </li>
+            <li class="item">
+                <a href="#">
+                    Lazer công nghệ cao <i class="fa-solid fa-chevron-down"></i>
+                </a>
+
+            </li>
+            <li class="item">
+                <a href="#">
+                    Spa & Phun xăm thẩm mỹ <i class="fa-solid fa-chevron-down"></i>
+                </a>
+
+            </li>
+            <li class="item">
+                <a href="@Url.Action("Product", "Home")">
+                    Sản phẩm <i class="fa-solid fa-chevron-down"></i>
+                </a>
+
+            </li>
+            <li class="item">
+                <a href="#">
+                    Liên hệ <i class="fa-solid fa-chevron-down"></i>
+                </a>
+
+            </li>
+
+        </ul>
+    </div>
+</header>
